@@ -1,0 +1,10 @@
+<div id="gateways" style="position: absolute;top:135px;left:55px">
+Which of the following is the Device ID of your gateway?
+<ul>
+    <% for gateway in gateways: %>
+        <li> 
+            <a href="/<%= gateway.replace('-','')[16:32] %>/index.html"> <%= gateway %> </a>
+        </li>
+    <% end %>
+</ul>
+</div>

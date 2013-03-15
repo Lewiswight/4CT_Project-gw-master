@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="com.python.pydev.refactoring.ui.findreplace.FindReplaceDialog">
+		<item value="true" key="wrap"/>
+		<item value="false" key="isRegEx"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="false" key="wholeword"/>
+		<item value="DOW" key="selection"/>
+		<list key="findhistory">
+			<item value="dow"/>
+		</list>
+		<list key="replacehistory">
+		</list>
+	</section>
+	<section name="com.python.pydev.refactoring.ui.findreplace.FindReplaceDialog_dialogBounds">
+		<item value="257" key="DIALOG_WIDTH"/>
+		<item value="251" key="DIALOG_Y_ORIGIN"/>
+		<item value="410" key="DIALOG_HEIGHT"/>
+		<item value="1149" key="DIALOG_X_ORIGIN"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="257" key="DIALOG_WIDTH"/>
+		<item value="83" key="DIALOG_Y_ORIGIN"/>
+		<item value="8" key="DIALOG_X_ORIGIN"/>
+		<item value="381" key="DIALOG_HEIGHT"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="true" key="wrap"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="isRegEx"/>
+		<item value="false" key="incremental"/>
+		<item value="false" key="wholeword"/>
+		<item value="firm_update" key="selection"/>
+		<list key="findhistory">
+			<item value="firm_update"/>
+			<item value="fw_"/>
+			<item value="sec2hour"/>
+			<item value="PRH"/>
+			<item value="DPR"/>
+			<item value="DP"/>
+			<item value="dose"/>
+			<item value="dose pump"/>
+		</list>
+		<list key="replacehistory">
+			<item value="temp_dst"/>
+			<item value="timestamp=1315351500"/>
+			<item value="unit=&quot;sec2time&quot;"/>
+			<item value="cr"/>
+			<item value="cfv"/>
+			<item value="st"/>
+			<item value="mc"/>
+			<item value="value"/>
+		</list>
+	</section>
+</section>

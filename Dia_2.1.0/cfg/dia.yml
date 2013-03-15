@@ -1,0 +1,115 @@
+
+## Template iDigi Device Integration Application Framework Configuration File
+
+##
+## The devices section: contains a list of device instances.
+##
+## Instances follow the following format:
+##
+##   - name: "device_instance_name"
+##     driver: dot.separated.path.to.driver:DriverClassName
+##     settings:
+##         setting_name0: setting_value0
+##         setting_name1: setting_value1
+##         # ..
+##         setting_namen: setting_valuen
+##
+devices:
+  # The template device driver; creates a demonstration device
+  # containing a counter and a set of channels implementing a simple
+  # adder.
+  - name: template
+    driver: devices.template_device:TemplateDevice
+    settings:
+        count_init: 0
+        update_rate: 1.0
+
+  # This transforms device instance uses the channel template.counter
+  # as c[0] in the transform expression and multiplies this channel
+  # value by two to create a new channel called
+  # template_transforms.count_by_two
+  - name: template_transforms
+    driver: devices.transforms_device:TransformsDevice
+    settings:
+      - name: count_by_two
+        channels:
+          - template.counter
+        expr: c[0] * 2
+
+##
+## Un-comment the following section in order to enable channel logging:
+##
+#loggers:
+#    - name: file_logger
+#      driver: channels.logging.file_logger.file_logger:FileLogger
+#      settings:
+#          filename: "WEB/python/dia.log"
+#          event_volume_size_k: 256
+
+##
+## The presentations section: contains a list of presentation instances.
+##
+## Presentation instances, similar to driver instances, follow the
+## following format:
+##
+##   - name: "presentation_instance_name"
+##     driver: dot.separated.path.to.presentation:PresentationClassName
+##     settings:
+##         setting_name0: setting_value0
+##         setting_name1: setting_value1
+##         # ..
+##         setting_namen: setting_valuen
+##
+presentations:
+  # Create a new console instance on TCP port 4146.  It can be connected
+  # to by using any telnet client.
+  - name: console0
+    driver: presentations.console.console:Console
+    settings:
+        type: tcp
+        port: 4146
+
+  # Create a web presentation instance.  
+  # Depending on the run-time environment, this presentation will
+  # either "extend" the web-server built in to the Digi device with a
+  # new page named "idigi_dia.html", or present a new Python based
+  # server to present that page.
+  # See the file src/presentations/web/web.py for more
+  # information.
+  - name: web0
+    driver: presentations.web.web:Web
+    settings:
+        page: idigi_dia.html
+
+  # Create an XMLRPC presentation instance. This presentation makes all
+  # device channels available for access via an XMLRPC interface.  See
+  # the file src/presentation/xmlrpc/xmlrpc.py for more information.
+  - name: xmlrpc
+    driver: presentations.xmlrpc.xmlrpc:XMLRPC
+    settings:
+        port: 8080
+
+##
+## The services section: contains a list of services instances.
+##
+## Service instances, similar to presentation instances, follow the
+## following format:
+##
+##   - name: "service_instance_name"
+##     driver: dot.separated.path.to.service:ServiceClassName
+##     settings:
+##         setting_name0: setting_value0
+##         setting_name1: setting_value1
+##         # ..
+##         setting_namen: setting_valuen
+##
+## Un-comment the following section in order to enable services:
+##
+#services:
+  # Create a new watchdog service instance. iDigi Dia will stroke the watchdog
+  # each 120 seconds. It will force reboot if below 40960 bytes of free memory.
+#   - name: watchdog_service0
+#     driver: services.watchdog_service:WatchdogService
+#     settings:
+#         watchdog_interval: 120
+#         low_memory_threshold: 40960

@@ -1,0 +1,92 @@
+devices:
+
+  - name: xbee_device_manager
+    driver: devices.xbee.xbee_device_manager.xbee_device_manager:XBeeDeviceManager
+
+  - name: xbee_autoenum
+    driver: devices.xbee.xbee_devices.xbee_autoenum:XBeeAutoEnum
+    settings:
+        xbee_device_manager: xbee_device_manager
+        discover_rate: 600
+        devices:
+            - name: auto_aio
+              driver: devices.xbee.xbee_devices.xbee_aio:XBeeAIO
+              settings:
+                  sample_rate_ms: 60000
+                  power: "On"
+                  sleep: True
+                  channel1_mode: "CurrentLoop"
+                  channel2_mode: "CurrentLoop"
+                  channel3_mode: "CurrentLoop"
+                  channel4_mode: "CurrentLoop"
+            - name: auto_dio
+              driver: devices.xbee.xbee_devices.xbee_dio:XBeeDIO
+              settings:
+                  power: "On"
+                  sleep: True
+                  channel1_dir: "In"
+                  channel2_dir: "In"
+                  channel3_dir: "In"
+                  channel4_dir: "In"
+            - name: auto_m3
+              driver: devices.vendors.massa.massa_m3:MassaM3
+              settings:
+                  sample_rate_sec: 120
+                  awake_time_sec: 30
+                  sleep_rate_sec: 480
+            - name: auto_sensor
+              driver: devices.xbee.xbee_devices.xbee_sensor:XBeeSensor
+              settings:
+                  sleep: True
+                  sample_rate_ms: 120000
+                  awake_time_ms: 1000
+            - name: auto_wall_router
+              driver: devices.xbee.xbee_devices.xbee_xbr:XBeeXBR
+              settings:
+                  sample_rate_ms: 5000
+            - name: auto_watchport
+              driver: devices.xbee.xbee_devices.xbee_watchport:XBeeWatchportSensorD
+              settings:
+                  sample_rate_ms: 10000
+                  sleep: True
+            - name: auto_smart_plug
+              driver: devices.xbee.xbee_devices.xbee_rpm:XBeeRPM
+              settings:
+                  sample_rate_ms: 10000
+                  default_state: "Off"
+                  device_profile: fluor-mag
+            - name: auto_xbib
+              driver: devices.xbee.xbee_devices.xbee_xbib:XBeeXBIB
+            - name: auto_massa_m300
+              driver: devices.vendors.massa.massa_m300:MassaM300
+              settings:
+                  baudrate: 19200
+                  stopbits: 1
+                  parity: none
+                  poll_rate_sec: 60
+
+presentations:
+
+  - name: web
+    #driver: presentations.embedded_web.web:Web
+    driver: presentations.web.web:Web
+    settings:
+        use_default_httpserver: False
+        page: idigi_dia
+
+  - name: console0
+    driver: presentations.console.console:Console
+    settings:
+        type: tcp
+        port: 4146
+        device: /com/0
+        baudrate: 115200
+
+loggers:
+
+  - name: embedded_log
+    driver: channels.logging.file_logger.file_logger:FileLogger
+    settings:
+        filename: WEB/python/idigi_dia.log
+        event_volume_size_k: 256
+        sample_index_frequency: 128

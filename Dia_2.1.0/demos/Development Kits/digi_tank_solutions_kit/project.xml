@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+ <project label="Digi Tank Solutions Kit" visible="true">
+  <description>&lt;p&gt;iDigi Dia project sample designed for the Digi Tank Solutions Kit.&lt;/p&gt;
+  &lt;p&gt;This project provides an example of a iDigi Dia framework using a fluid tank (simulated with 
+  the Digi Tank Simulator application) as well as two virtual tanks. It also includes a custom presentation to 
+  allow the tank valves to be controlled by the XBIB-U-DEV.&lt;/p&gt;</description>
+  <type>com.digi.dpdev.project.dia</type>
+  <data_path>data</data_path>
+  <id>digi_tank_solutions_kit</id>
+  <mainFile>digi_tank_solutions_kit.yml</mainFile>
+  <sampleFiles></sampleFiles>
+  <sourceFolder></sourceFolder>
+  <icon></icon>
+  <platforms>
+    <platform>ConnectPort X2</platform>
+    <platform>ConnectPort X2B</platform>
+    <platform>ConnectPort X2D</platform>
+    <platform>ConnectPort X2e ZB</platform>
+    <platform>ConnectPort X2e Wi-Fi ZB</platform>
+    <platform>ConnectPort X2 SE</platform>
+    <platform>ConnectPort X4</platform>
+    <platform>ConnectPort X4 H</platform>
+    <platform>ConnectPort X4 IA</platform>
+    <platform>ConnectPort X4 NEMA</platform>
+    <platform>ConnectPort X4 4G</platform>
+    <platform>ConnectPort X5</platform>
+    <platform>ConnectPort X5 F ZB GPRS</platform>
+    <platform>ConnectPort X5 F ZB Wifi GPRS</platform>
+    <platform>ConnectPort X5 R ZB GPRS</platform>
+    <platform>ConnectPort X5 R ZB Wifi GPRS</platform>
+    <platform>ConnectPort X5 R ZB Wifi CDMA</platform>
+    <platform>ConnectPort X8</platform>
+    <platform>Embedded Gateway</platform>
+    <platform>ConnectCore 3G 9P 9215</platform>
+  </platforms>
+</project>

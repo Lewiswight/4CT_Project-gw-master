@@ -1,0 +1,38 @@
+
+	<!-- These are the display divs. Each is populated by SWFObject. The first is an example
+	using Flash SWFObject detection -->
+	<div id="gauges" style="position: absolute;top:135px;left:55px">
+	   <% for i in types: %>
+	      <div style="float:left" id="<%= i %>">You need to upgrade your Flash Player</div>
+	   <% end %> 
+	</div>
+	
+	
+	<!-- Here's the code to make the gauges work. -->
+	<% for i in types: %>
+	   <script type="text/javascript">
+		   // <![CDATA[
+		   var so = new SWFObject("flash/<%= i[i.find(".")+1:] %>.swf", "<%= i %>", "<%= (screen_width-100)/len(types) %>", "250", "9", "#ffffff");
+		
+		   so.addVariable("funcName", "<%= i %>"); //Required!
+		   so.addVariable("refresh", "2000"); //Required! 1000 = 1 sec
+		   so.addVariable("exec_type", "py"); 
+		   
+		   <% if not sensor_alias == None and sensor_alias.has_key(i) : %>
+		    	so.addVariable("title", "<%= sensor_alias[i] %>")
+		   <% end %><% else: %>
+		   		so.addVariable("title", "<%= i[i.find(".")+1:] %>"); 
+		   <% end %>
+		   
+		   so.addVariable("title_color", "black"); // Default: silver. Options: black, white, 
+		
+		   so.addParam("quality", "high");
+		   so.addParam("wmode", "transparent")
+		
+		   // This will detect the Flash version using SWFObject.
+		   so.useExpressInstall('/javascript/swfobject1-5/expressinstall.swf');
+		
+		   so.write("<%= i %>");
+		   // ]]>
+	   </script>
+	<% end %>

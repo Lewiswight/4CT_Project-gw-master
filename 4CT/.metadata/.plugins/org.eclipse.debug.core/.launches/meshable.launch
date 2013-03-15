@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="com.digi.dpdev.debug.DigiDIALaunchConfiguration">
+<stringAttribute key="com.digi.dpdev.debug.ATTR_CONSOLE_PORT" value="4146"/>
+<booleanAttribute key="com.digi.dpdev.debug.ATTR_CONSOLE_PRESENTATION" value="false"/>
+<booleanAttribute key="com.digi.dpdev.debug.ATTR_DEFAULT_WEB_SERVER" value="true"/>
+<stringAttribute key="com.digi.dpdev.debug.ATTR_PROJECT" value="meshable"/>
+<intAttribute key="com.digi.dpdev.debug.ATTR_STOP_AT_MAIN" value="2"/>
+<intAttribute key="com.digi.dpdev.debug.ATTR_TIME_FOR_PRESENTATION" value="120"/>
+<booleanAttribute key="com.digi.dpdev.debug.ATTR_UPLOAD_RESOURCES" value="true"/>
+<stringAttribute key="com.digi.dpdev.debug.ATTR_WEB_PAGE" value="index"/>
+<stringAttribute key="com.digi.dpdev.debug.ATTR_WEB_PORT" value="8001"/>
+<booleanAttribute key="com.digi.dpdev.debug.ATTR_WEB_PRESENTATION" value="true"/>
+<stringAttribute key="com.digi.dpdev.debug.ATTR_WORKING_DIRECTORY" value="C:/Users/Lewis/Dropbox/Dia releases/9_projects/MistAway/meshable"/>
+<stringAttribute key="com.digi.dpdev.debug.ATTR_YML_FILE" value="HouseLynx1.yml"/>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/meshable"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="4"/>
+</listAttribute>
+<stringAttribute key="process_factory_id" value="com.digi.dpdev.debug.remoteProcessFactory"/>
+</launchConfiguration>

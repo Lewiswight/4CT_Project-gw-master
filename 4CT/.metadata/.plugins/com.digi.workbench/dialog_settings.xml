@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="com.digi.workbench.addp.ADDP_DIALOG_SECTION">
+		<item value="850" key="com.digi.workbench.DIALOG_WIDTH"/>
+		<item value="0" key="com.digi.workbench.DIALOG_ORIGIN_Y"/>
+		<item value="105" key="com.digi.workbench.DIALOG_ORIGIN_X"/>
+		<item value="515" key="com.digi.workbench.DIALOG_HEIGHT"/>
+	</section>
+</section>

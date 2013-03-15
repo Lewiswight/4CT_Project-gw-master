@@ -1,0 +1,115 @@
+# This configuration file is used to specify which components will be
+# used in the iDigi Sensor Demo.
+# Essentially, we will be selecting the sources of information, and how
+# that information is presented.  This demo is intended to be used with
+# the set of devices configured in this file.  If you wish to use a
+# defferent set of devices, you will need to change the configuration
+# of the idigi_db presentation near the bottom of this file, and 
+# add or remove the correct device drivers.
+
+# The devices section specifies settings for devices
+devices:
+
+# First we specify an XBee Device Manager.  Since the XBee is considered,
+# a shared resource on our system, we need a device which can manage
+# requests from other devices relating to the XBee.
+  - name: xbee_device_manager
+    driver: devices.xbee.xbee_device_manager.xbee_device_manager:XBeeDeviceManager
+
+# Here we are including a Digi LTH (Light, Temperature, Humidity)
+# XBee Sensor in our system.  Configuration is similar to the Smart Plug.
+# The main addition is that since the LTH Sensor will likely be battery
+# powered, we have set the XBee to sleep between samples.
+  - name: lth_sensor_1
+    driver: devices.xbee.xbee_devices.xbee_sensor:XBeeSensor
+    settings:
+        xbee_device_manager: xbee_device_manager
+        extended_address: "00:13:a2:00:40:4a:ba:40!"
+        sleep: True
+        sample_rate_ms: 1000
+        awake_time_ms: 320
+
+  - name: power_control
+    driver: devices.transforms_device:TransformsDevice
+    settings:
+      - name: plug_decision
+        unit: boolean
+        channels: 
+          - lth_sensor_1.light
+        expr: c[0] < 30.0
+
+# Here we specify that we have a Digi Smart Plug as a device.  In the
+# settings, we specify the parent XBee Device Manager for this device,
+# as well as the extended address of the actual node that is associated
+# to our gateway.  We then specify that we would like the Smart Plug
+# to send up sensor readings once a second, and that when the Dia starts,
+# the outlet on the Smart Plug should be turned on.
+  - name: smart_plug_1
+    driver: devices.xbee.xbee_devices.xbee_rpm:XBeeRPM
+    settings:
+        xbee_device_manager: xbee_device_manager
+        extended_address: "00:13:a2:00:40:34:0c:84!"
+        sample_rate_ms: 1000
+        default_state: "On"
+        power_on_source: power_control.plug_decision
+
+# This is an XBee Analog IO Adapter.  The setting power decides whether
+# the Adapter should provide power through terminal 6 of the device.  The
+# following channel modes let us decide whether terminals 1-4 measure
+# voltage (from zero to ten), four to twenty milliamp current loop,
+# or the voltage differential between terminal pairs (1/2, 3/4).
+  - name: aio_adapter_1
+    driver: devices.xbee.xbee_devices.xbee_aio:XBeeAIO
+    settings:
+        xbee_device_manager: xbee_device_manager
+        extended_address: "00:13:a2:00:40:52:2c:4a!"
+        sample_rate_ms: 1000
+        power: On
+        channel1_mode: TenV
+        channel2_mode: TenV
+        channel3_mode: TenV
+        channel4_mode: TenV
+
+
+# The presentation section allows us to specify the ways in which
+# information in our system is available.
+presentations:        
+
+# Here we define a standard console method.  Using this,
+# someone can connect (with telnet in Windows for example),
+# to get a quick and simple look at the current state of the
+# system.  They can view the status of all channels, and set
+# any channels that support being configured.
+  - name: console
+    driver: presentations.console.console:Console
+    settings:
+        type: tcp
+        port: 4146
+    
+# The idigi_db presentation layer is what allows us to
+# interact with the iDigi Storage Service.  This presentation
+# layer tracks when updates are made to any of the channels.  After a
+# certain interval of time (defined by the interval setting), or after
+# the number of new samples has exceeded our sample_threshold, we 
+# combine all of the sample information in an XML file, and then push
+# it up to iDigi through an available network connection.
+#
+# Each time we push up to iDigi, we are essentially creating
+# a file to store our information.  The file_count lets us choose the
+# maximum number of files we will have at one time as a result of this
+# presentation layer.  It will cycle through and overwrite old data.
+#
+# If you wish to increase the number of devices in this demo, remember
+# that each device can potentially have multiple channels.  You will want
+# to ensure that sample_threshold parameter is greater than the total
+# number of channels that are actively configured or the idigi_db
+# presentation will constantly attempt to combine all sample information
+# and send to iDigi.
+  - name: idigi_db
+    driver: presentations.idigi_db.idigi_db:iDigi_DB
+    settings:
+        interval: 5
+        sample_threshold: 20
+        collection: sensor_demo
+        file_count: 20
+        filename: sensor_reading

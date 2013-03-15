@@ -1,0 +1,175 @@
+devices:
+- driver: devices.experimental.alarm_clock_device:AlarmClockDevice
+  name: tick_tock
+  settings: {printf: minute}
+- driver: devices.modbus.mbus_udp_device:MBusUDPDevice
+  name: m1016
+  settings:
+    poll_clean_minutes: 5
+    poll_list:
+    - channels:
+      - parse: {expr: (%d/1.0), frm: '[i', nam: T, ofs: 0, typ: float, unt: Whr}
+      poll: Energy
+      pollinfo: {cnt: 2, fnc: 3, ofs: 14006, uid: 100}
+    - channels:
+      - parse: {expr: (%d/1000.0), frm: '[i', nam: T, ofs: 0, typ: float, unt: kW}
+      poll: Power
+      pollinfo: {cnt: 2, fnc: 3, ofs: 11054, uid: 100}
+    - channels:
+      - parse: {expr: (%d/10.0), frm: '[i', nam: T, ofs: 0, typ: float, unt: V}
+      poll: Voltage
+      pollinfo: {cnt: 2, fnc: 3, ofs: 11006, uid: 100}
+    - channels:
+      - parse: {expr: (%d/1000.0), frm: '[i', nam: T, ofs: 0, typ: float, unt: A}
+      poll: Current
+      pollinfo: {cnt: 2, fnc: 3, ofs: 11032, uid: 100}
+    - channels:
+      - parse: {expr: (%d/32767.0), frm: '[i', nam: T, ofs: 0, typ: float, unt: ''}
+      poll: PwrFactor
+      pollinfo: {cnt: 2, fnc: 3, ofs: 11106, uid: 100}
+    round: 3
+    udp_peer: ('127.0.0.1', 502)
+- driver: devices.vendors.comverge.subtotal:SubTotalizerDevice
+  name: IntervalEnergy_m1016
+  settings: {delta: true, hourly: true, rollover_mask: 65535, total_source: m1016.Energy_T}
+- driver: devices.modbus.mbus_udp_device:MBusUDPDevice
+  name: m999222
+  settings:
+    poll_list:
+    - channels:
+      - parse: {expr: '', frm: h, nam: 4, ofs: 0, typ: int, unt: ''}
+      poll: DigitalInput
+      pollinfo: {cnt: 1, fnc: 3, ofs: 15300, uid: 100}
+    poll_rate_sec: 15
+    round: 3
+    udp_peer: ('127.0.0.1', 502)
+- driver: devices.vendors.comverge.digitallatch:DigitalLatchDevice
+  name: dcu_state
+  settings: {digital_source: m999222.DigitalInput_4, latch: true}
+- driver: presentations.rci.rci_handler:RCIHandler
+  name: rci_handler
+  settings: {target_name: idigi_dia}
+- driver: devices.xbee.xbee_device_manager.xbee_device_manager:XBeeDeviceManager
+  name: xbee_device_manager
+  settings:
+    addr_dd_map: {}
+    skip_config_addr_list: ['00:00:00:00:00:00:00:00!', '[00:13:a2:00:40:3a:ed:78]!']
+    update_skiplist: 'True'
+    worker_threads: 1
+- driver: devices.xbee.xbee_devices.xbee_autoenum:XBeeAutoEnum
+  name: xbee_autoenum
+  settings:
+    devices:
+    - driver: devices.xbee.xbee_devices.xbee_watchport:XBeeWatchportSensorT
+      name: thermometer
+      settings: {extended_address: '', sample_rate_ms: 300000, xbee_device_manager: xbee_device_manager}
+    discover_rate: 600
+    xbee_device_manager: xbee_device_manager
+- driver: devices.vendors.comverge.SystemStatus:SystemStatus
+  name: systemMon
+  settings: {no_mobile: false, no_zigbee: false, update_rate: 300}
+- driver: devices.alarms_device:AlarmsDevice
+  name: alarms
+  settings:
+  - channels: [systemMon.free_memory]
+    name: memory_low
+    off_expr: c[0] > 3000
+    on_expr: c[0] < 2000
+  - channels: [systemMon.mobile_status]
+    name: mobile_status
+    off_expr: c[0] == 'connected' or c[0] == 'active'
+    on_expr: c[0] != 'connected' and c[0] != 'active'
+  - channels: [systemMon.idigi_status]
+    name: no_idigi
+    off_expr: c[0] == 'connected'
+    on_expr: c[0] != 'connected'
+  - channels: [systemMon.mobile_rssi]
+    name: low_mobile_rssi
+    off_expr: c[0] > -95
+    on_expr: c[0] < -100
+  - channels: [systemMon.zigbee_coord_rssi]
+    name: low_zb_rssi
+    off_expr: c[0] > -95
+    on_expr: c[0] < -100
+  - channels: [alarms.no_idigi, alarms.memory_low, alarms.low_mobile_rssi, alarms.low_zb_rssi]
+    name: send_email
+    off_expr: not (c[0] or c[1] or c[2] or c[3])
+    on_expr: c[0] or c[1] or c[2] or c[3]
+- driver: devices.xbee.xbee_devices.xbee_watchport:XBeeWatchportSensorT
+  name: thermometer_[00:13:a2:00:40:3a:ed:78]!
+  settings: {extended_address: '[00:13:a2:00:40:3a:ed:78]!', poll_clean_minutes: 5,
+    xbee_device_manager: xbee_device_manager}
+loggers: {}
+presentations:
+- driver: presentations.vendors.comverge.alarm_smtp:AlarmSMTPHandler
+  name: emailer
+  settings: {from_address: alarm@example.com, monitored_channel: alarms.send_email,
+    notify_cooldown_time: 300, password: secret!, port: 587, server_address: smtp.gmail.com,
+    subject: Gateway Alert, to_address: someone@example.com, username: alarm}
+- driver: presentations.vendors.comverge.idigi_upload:iDigi_Upload
+  name: meter_telemetry
+  settings:
+    cache: 5000
+    channels: [m1016.Energy_T, m1016.Power_T, m1016.Voltage_T, m1016.Current_T, m1016.PwrFactor_T,
+      IntervalEnergy_m1016.delta]
+    clean_minute_interval: 0
+    clean_minute_skew_secs: 0
+    collection: telemetry
+    compact_xml: true
+    file_count: 10000
+    filename: meter_telemetry
+    filename_format: '%s%i.xml'
+    interval: 1800
+    sample_threshold: 10000
+    secure: false
+- driver: presentations.vendors.comverge.idigi_upload:iDigi_Upload
+  name: rssi_telemetry
+  settings:
+    cache: 5000
+    channels: [systemMon.mobile_rssi, systemMon.zigbee_coord_rssi]
+    clean_minute_interval: 0
+    clean_minute_skew_secs: 0
+    collection: telemetry
+    compact_xml: true
+    file_count: 10000
+    filename: rssi_telemetry
+    filename_format: '%s%i.xml'
+    interval: 1800
+    sample_threshold: 10000
+    secure: false
+- driver: presentations.vendors.comverge.idigi_upload:iDigi_Upload
+  name: temp_telemetry
+  settings:
+    cache: 5000
+    channels: ['thermometer_[00:13:a2:00:40:3a:ed:78]!.temperature']
+    clean_minute_interval: 0
+    clean_minute_skew_secs: 0
+    collection: telemetry
+    compact_xml: true
+    file_count: 10000
+    filename: temp_telemetry
+    filename_format: '%s%i.xml'
+    interval: 1800
+    sample_threshold: 10000
+    secure: false
+- driver: presentations.vendors.comverge.idigi_upload:iDigi_Upload
+  name: dcu_telemetry
+  settings:
+    cache: 5000
+    channels: [dcu_state.latch]
+    clean_minute_interval: 0
+    clean_minute_skew_secs: 0
+    collection: telemetry
+    compact_xml: true
+    file_count: 5000
+    filename: dcu_event
+    filename_format: '%s%i.xml'
+    interval: 60
+    sample_threshold: 1
+    secure: false
+- driver: presentations.embedded_web.web:Web
+  name: web0
+  settings: {page: idigi_dia}
+- name: rci_handler
+  settings: {}
+services: {}

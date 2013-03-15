@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+ <project label="A Simple iDigi Short Messaging Service (Iridium) Sample" visible="true">
+  <description>&lt;p&gt;An iDigi Dia project sample that shows how Dia can be used to upload channel updates or channel alarms to iDigi 
+over the Iridium satellite network based on channel filters and an interval or a conditional value.&lt;/p&gt;</description>
+  <type>com.digi.dpdev.project.dia</type>
+  <data_path>data</data_path>
+  <id>iDigi_Iridium_Sample</id>
+  <mainFile>iDigi_Iridium_Sample.yml</mainFile>
+  <sampleFiles></sampleFiles>
+  <sourceFolder></sourceFolder>
+  <icon></icon>
+  <platforms>
+    <platform>ConnectPort X5 R Wifi GPRS Iridium</platform>
+  </platforms>
+</project>

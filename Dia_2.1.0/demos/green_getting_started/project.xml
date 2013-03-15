@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+ <project label="Green Kit" visible="true">
+  <description>iDigi Dia Framework example project for the Green Getting Started Kit.</description>
+  <type>com.digi.dpdev.project.dia</type>
+  <data_path>data</data_path>
+  <id>green_kit</id>
+  <mainFile>green_kit.yml</mainFile>
+  <sampleFiles></sampleFiles>
+  <sourceFolder></sourceFolder>
+  <icon></icon>
+  <platforms>
+    <platform>ConnectPort X4</platform>
+    <platform>ConnectPort X4 IA</platform>
+    <platform>ConnectPort X4 4G</platform>
+    <platform>Embedded Gateway</platform>
+    <platform>ConnectPort X2e ZB</platform>
+    <platform>ConnectPort X2e Wi-Fi ZB</platform>
+  </platforms>
+</project>

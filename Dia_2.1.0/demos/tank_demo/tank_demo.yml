@@ -1,0 +1,120 @@
+devices:
+  - name: xbee_device_manager
+    driver: devices.xbee.xbee_device_manager.xbee_device_manager:XBeeDeviceManager
+
+  - name: rpm_left
+    driver: devices.xbee.xbee_devices.xbee_rpm:XBeeRPM
+    settings:
+        xbee_device_manager: xbee_device_manager
+        extended_address: "00:13:a2:00:40:34:0c:b0!"
+        sample_rate_ms: 1000
+        default_state: "Off"
+        power_on_source: tank_control.left_pump_on
+
+  - name: rpm_right
+    driver: devices.xbee.xbee_devices.xbee_rpm:XBeeRPM
+    settings:
+        xbee_device_manager: xbee_device_manager
+        extended_address: "00:13:a2:00:40:34:0c:a7!"
+        sample_rate_ms: 1000
+        default_state: "Off"
+        power_on_source: tank_control.right_pump_on
+
+  - name: aio_left
+    driver: devices.xbee.xbee_devices.xbee_aio:XBeeAIO
+    settings:
+        xbee_device_manager: xbee_device_manager
+        extended_address: "00:13:a2:00:40:0a:49:7a!"
+        sample_rate_ms: 1000
+        power: "On"
+        channel1_mode: "TenV"
+        channel2_mode: "TenV"
+        channel3_mode: "TenV"
+        channel4_mode: "TenV"
+
+  - name: aio_right
+    driver: devices.xbee.xbee_devices.xbee_aio:XBeeAIO
+    settings:
+        xbee_device_manager: xbee_device_manager
+        extended_address: "00:13:a2:00:40:34:16:35!"
+        sample_rate_ms: 1000
+        power: "On"
+        channel1_mode: "TenV"
+        channel2_mode: "TenV"
+        channel3_mode: "TenV"
+        channel4_mode: "TenV"
+
+#  - name: massa_left
+#    driver: devices.vendors.massa.massa_m300:MassaM300
+#    settings:
+#        xbee_device_manager: xbee_device_manager
+#        extended_address: "00:13:a2:00:40:0a:49:7a!"
+#        poll_rate_sec: 1
+#
+#  - name: massa_right
+#    driver: devices.vendors.massa.massa_m300:MassaM300
+#    settings:
+#        xbee_device_manager: xbee_device_manager
+#        extended_address: "00:13:a2:00:40:34:16:35!"
+#        poll_rate_sec: 1
+#
+  - name: tank_status
+    driver: devices.transforms_device:TransformsDevice
+    settings:
+      - name: left_volume
+        unit: L
+        channels: 
+          - aio_left.channel1_value
+        expr: "-6.1617 * c[0] + 15.011"
+
+      - name: right_volume
+        unit: L
+        channels: 
+          - aio_right.channel1_value
+        expr: "-6.1617 * c[0] + 15.011"
+
+      - name: left_pump_work
+        unit: W
+        channels: 
+          - rpm_left.current
+        expr: 120.0 * c[0]
+
+      - name: right_pump_work
+        unit: W
+        channels: 
+          - rpm_right.current
+        expr: 120.0 * c[0]
+
+  - name: tank_control
+    driver: tank_demo_control:TankDemoControl
+    # Exports two channels:
+    #   - left_pump_on (boolean state)
+    #   - right_pump_on (boolean state)
+    settings:
+        left_volume_channel: tank_status.left_volume
+        right_volume_channel: tank_status.right_volume
+        transition_threshold: 5.0
+
+loggers:
+  - name: file_logger
+    driver: channels.logging.file_logger.file_logger:FileLogger
+    settings:
+        filename: WEB/python/idigi_dia.log
+        event_volume_size_k: 128
+        sample_index_frequency: 16
+
+presentations:        
+  - name: console0
+    driver: presentations.console.console:Console
+    settings:
+        type: tcp
+        port: 4146
+
+  - name: web
+    driver: presentations.embedded_web.web:Web
+
+  - name: fusion_widgets
+    driver: fusionwidgets:FusionWidgets
+    settings:
+        mount_on_dir: "/fusionwidgets"
+

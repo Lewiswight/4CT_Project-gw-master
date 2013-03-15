@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<presentation label="Digi Tank Kit presentation">
+  <driver>custom_presentations.tank_kit_presentation:TankKitPresentation</driver>
+  <description>iDigi Tank Kit presentation.
+
+This presentation works over the XBib device toggling the status of the LED1 and LED2 (which represent the tank valves) when pressing Button 1 and Button 2 of the device.
+
+It will subscribe the XBib Button 1 and Button 2 channels to detect when they have been pressed, and, depending on the button pressed it will toggle the corresponding XBib LED:
+
+    Button 1: Toggles XBib LED 1 (Input valve)
+    Button 2: Toggles XBib LED 2 (Output valve)</description>
+  <generic_name>digi_tank_kit</generic_name>
+  <icon>icons/digi_tank_kit.png</icon>
+  <settings>
+    <setting label="XBib board">
+      <type>string</type>
+      <required>true</required>
+      <default/>
+      <tooltip>Name of the XBib board Dia element.</tooltip>
+      <yml_field>xbib_board</yml_field>
+    </setting>
+  </settings>
+</presentation>

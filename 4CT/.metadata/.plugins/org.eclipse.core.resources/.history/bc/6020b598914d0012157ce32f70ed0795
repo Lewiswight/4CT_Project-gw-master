@@ -1,0 +1,13 @@
+#Mon Dec 24 00:17:30 CST 2012
+Dia_path=C\:/Users/Lewis/Dropbox/Dia releases/Dia versions/Dia_2.1.0
+IP=10.1.10.44
+autocontained_project=false
+compile_sources=true
+configuration_file=HouseLynx1.yml
+device=ConnectPort X2
+eclipse.preferences.version=1
+remote_config_name=X2 ZB
+remove_docstrings=true
+use_Dia_defaults=true
+use_Dia_version=false
+use_current_remote_config=true

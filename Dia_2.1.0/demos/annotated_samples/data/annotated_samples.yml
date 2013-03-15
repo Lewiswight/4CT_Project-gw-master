@@ -1,0 +1,36 @@
+# Sample configuration using annotated sample devices
+
+devices:
+  # Template device to act as a source of data
+  - name: template
+    driver: devices.template_device:TemplateDevice
+    settings:
+        count_init: 0
+        update_rate: 1.0
+
+presentations:
+  # Console so that we can interact with the system
+  - name: console0
+    driver: presentations.console.console:Console
+    settings:
+        type: tcp
+        port: 4146
+
+services:
+  # Value service, let's add a 'high' flag when template.counter goes above 10
+  - name: value0
+    driver: custom_services.value_service:ValueService
+    settings:
+      - name: template.counter
+        checks:
+          - name: too_high
+            definition:
+              expr: sample.value > 10
+              error: False
+
+  # counter is "timeout" if it hasn't updated in a second
+  - name: timing0
+    driver: custom_services.timing_service:TimingService
+    settings:
+      timings:
+        template.counter: 1

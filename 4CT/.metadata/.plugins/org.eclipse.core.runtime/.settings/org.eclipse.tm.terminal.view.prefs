@@ -1,0 +1,11 @@
+#Mon Feb 25 15:51:49 CST 2013
+Connectors.ConnectionType=org.eclipse.tm.internal.terminal.telnet.TelnetConnector
+Connectors.org.eclipse.tm.internal.terminal.ssh.SshConnector.Host=10.1.10.62
+Connectors.org.eclipse.tm.internal.terminal.telnet.TelnetConnector.Timeout=10
+Connectors.org.eclipse.tm.internal.terminal.ssh.SshConnector.Keepalive=300
+Connectors.org.eclipse.tm.internal.terminal.telnet.TelnetConnector.Host=172.16.3.159
+Connectors.org.eclipse.tm.internal.terminal.ssh.SshConnector.Port=22
+Connectors.org.eclipse.tm.internal.terminal.telnet.TelnetConnector.NetworkPort=23
+Connectors.org.eclipse.tm.internal.terminal.ssh.SshConnector.User=python
+Connectors.org.eclipse.tm.internal.terminal.ssh.SshConnector.Timeout=5
+eclipse.preferences.version=1

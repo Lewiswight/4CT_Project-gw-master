@@ -1,0 +1,11 @@
+
+A single thread (./libs/http_helper.py) CWMControl will be responsible in handling interactions
+with the Connectware exist database.  It will contain a list of gateways/channels that it will
+continuely iterate through, putting values in a table.  It will only do this while requests are
+coming in, if requests stop for approx 12 seconds the thread will pause execution until another
+request comes in.
+
+When a request for the data on a particular channel occurs, the request thread will pull from the
+table the most recently read value.
+
+Gauges from OpenGauges http://www.darkartistry.com/content/view/129/48/

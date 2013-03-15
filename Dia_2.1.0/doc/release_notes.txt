@@ -1,0 +1,468 @@
+Digi International iDigi Dia Release Notes
+------------------------------------------
+
+Release Notes for Version 40002841_C (2.1.0.8):
+
+  Core System Changes
+
+    * ConnectPort X2e ZB support added.
+
+    * Platform independent time module (digitime) added.
+      See lib/digitime.py for details.
+
+  Device Changes
+
+    * EDPUpload renamed channel "upload_now" to "upload_snapshot"
+      and added support for interval snapshots.
+
+Release Notes for Version 40002841_B (2.0.12):
+
+  Hotfix Release
+
+    * Removed data corruption bug in edp_upload.
+
+Release Notes for Version 40002841_A (2.0.11):
+
+  Device Changes
+
+    * A new driver, EDPUpload, has been introduced to upload data to
+      iDigi. It is intended to replace the iDigi_DB presentation.
+
+    * A new driver, the DigiMeshDeviceManager, has been introduced to
+      support the DigiMesh protocol.
+
+    * The XBeeDeviceManager has been deprecated and replaced with the
+      ZigBeeDeviceManager for ZigBee networks.
+
+    * Iridium support and the ability to enable/disable via a channel
+      output added to Short Messaging presentation.
+      
+    * It is now possible to recover from reboot cycles. See Developer
+      Documentation -> Development Overview -> Section 5 for details
+      on the anti-spin mechanism.
+
+Release Notes for Version 40002675_G (1.4.14):
+
+  Core System Changes
+
+    * A new core service, the tracing manager, has been introduced.
+      See the tracing section in the user manual, and use the
+      the tracer test device::
+
+      src\devices\tracer_test_device.py
+
+      to test tracing configurations.
+
+    * A new method 'request_shutdown', has been added to the core.
+      This allows components in the system to request that Dia shut
+      down and exit. This functionality is also exposed on the
+      console, RCI, and XMLRPC interfaces.
+
+    * New and restructured access to sample code through the Digi ESP,
+      this has resulted in some code such as the 'persistent_settings'
+      device being relocated so it is clear the purpose it serves in
+      the system as for informative reference and to allow sample
+      project creation in the ESP as well.
+
+Release Notes for Version 40002675_F (1.4.6):
+
+  Core System Changes
+
+    * An example driver which saves device settings dynamically has
+      been added to the code – see file::
+
+      src\devices\persistant_settings.py.  
+
+      The example shows an alarm limit which can be updated remotely
+      via iDigi.
+
+    * Channel names can no longer use an embedded ‘.’ – several Dia
+      presentations were confused by this.  Developers who made use of
+      dots within their drivers will need to change their design.
+
+    * The Python traceback displayed when common DDO requests time
+      out has been removed.
+  
+  Device Changes
+
+    * Xbee device manager has had ‘update_skiplist’ default changed
+      from True, to False, which means by default the Dia will attempt
+      to reconfigure all devices every time it restarts. (v37747)
+
+    * XBee DIO adapter driver supports a timed update (for example
+      once per 30 seconds) as well as report-on-change.  The output
+      channel samples are also refreshed every time new data arrives
+      regardless of change.  (v33749,v33795)
+
+  Presentation Changes
+
+    * SMS support has been added.  To enable SMS data to be upload in
+      your iDigi cloud storage, you must speak to your iDigi sales
+      representative, requesting to have SMS support added to your
+      iDigi account subscription.  It is not free since a third party
+      service is involved.  Sending SMS messages to your own phone or
+      services is free and not related to this iDigi subscription.
+
+    * idigi_db driver will upload correctly even if your realtime
+      clock is changed - for example due to a time-zone change
+      (v32415)
+
+    * idigi_db has had the logic of settings interval and
+      sample-threshold fine-tuned.  Setting either to zero allows the
+      other to completely control the upload process. (v32386)
+
+  Known Issues
+
+    * Dia logger: at least one instance of the logger is supported.
+      Various products running Dia have different limitations on the
+      number of open files supported, which means you can probably run
+      2 or even 5 file loggers, but you probably cannot run 20.
+
+    * Dia developers: In some configurations trace output may be
+      excessively verbose.  For now, developers should comment out
+      undesired lines to limit to messages of interest.  The next
+      release of Dia will include a formal “tracing” facility which
+      allows trace lines to be enabled or disabled on a module or
+      instance basis.
+
+    * Embedded Web Presentation: issue with older AJAX files means IE
+      8 users may need to use IE8’s page refresh to see expected
+      information.  This will be fixed in a future release.
+
+    * Time Zone Usage: most modules within Dia use UTC/Greenwich time.
+      The design intent is that all undocumented uses of time will be
+      UTC, and any module desiring local time should have a
+      user-setting to select either UTC or local time, plus indicate
+      in the output which time-zone is being used.  Not all of the
+      demo code has been updated to follow this design guideline.
+
+Release Notes for Version 40002675_E (1.3.13):
+
+  Core System Changes
+
+    * The Dia documentation has been extended with additional
+      documentation aimed to aid in extending Dia with custom
+      modules.  The documentation now includes more in-depth
+      development guides and an integrated API reference.
+
+  Device Changes
+
+    * Added tank devices to support the Digi Tank Solutions Kit.
+
+  Known Issues
+
+    * The iDigi Dia is being delivered as a package for Digi ESP now.
+      However, there is curently an issue with the Package Manager
+      uninstall process on Mac OS X.  This will be addressed in the
+      next release of Digi ESP.
+
+Release Notes for Version 40002675_D (1.3.8):
+
+  Core System Changes
+
+    * Using/developing Dia on a MacOS system should now be
+      easier. Rewrote some incorrect path and system operations to be
+      more platform neutral.
+
+    * You may now choose not to byte-compile dia.zip using the '-c
+      False' option of 'make.py'.  
+
+    * Portions of the system that rely on doc-strings have been
+      rewritten so that the Python interpreter '-OO' flag may be used
+      to remove doc-strings and functionality will not be lost.
+
+  Device Changes
+
+    * A new local I/O device <src/devices/local_io.py> has been added
+      that simplifies configuration of devices such as the ConnectPort
+      X3 that have local analog and digital I/O.
+
+    * The XBee configuration process has been streamlined to allow
+      device configuration to complete more quickly in the majority of
+      environments. 
+
+    * The XBee Device Manager will now by default save new versions of
+      the settings file while processing and configuring nodes
+      discovered on the mesh network.  This behavior is configurable
+      with the 'update_skiplist' configuration item on the XBee Device
+      Manager.
+
+    * The 'alarm' device no longer triggers channel updates only on
+      specific time values for its intervals.  The updates are now
+      relative to the start time of the driver.  This simplifies the
+      code and makes it much more robust.
+
+  Presentation changes
+  
+    * The Console presentation may now be set to provide a CLI on
+      serial ports of the device.
+
+  Deprecation Warning
+
+    * With the addition of the local_io driver, the xbee_local_aio.py
+      and xbee_local_dio.py are obsolete and will be removed in an
+      upcoming release of Dia.
+
+    * XBeeConfigBlockConfigCB has been removed.  Exposing a
+      configuration process during the configuration steps for XBee
+      radios reduced the optimizations and assumptions that could be
+      made to streamline this process.  
+
+      As a result, the Massa M3 driver has been updated.
+
+    * The XBee Display driver has been removed.  This product is not
+      generally available. 
+
+Release Notes for Version 40002675_C1 (1.2.20):
+
+  Bug Fixes
+
+    *  An issue existed in 1.2.19 where XBee devices configured for
+       extended sleep intervals were not getting their SN parameter set.
+
+Release Notes for Version 40002675_C (1.2.18):
+
+  Deprecation Warning
+
+    *  This release currently supports module firmware older than the
+       2.8.3 version.  To support future platforms consistently a
+       future release of Dia will require 2.8.3 at a minimum
+
+  Known Limitations:
+
+    *  The XBee Device Manager and associated XBee device drivers
+       only support the ZB (ZigBee) modules.  802.15.4, DigiMesh,
+       and other module variants are unsupported at this time.
+    
+    *  Recent versions of Digi ConnectPort firmware provide a firmware
+       update feature.  Having this feature on interacts poorly with
+       Dia operation.  We strongly recommend disabling automatic
+       operation.
+
+       To disable this feature, in the *Configuration -> XBee Network*
+       menu, under the *Firmware Update Setup* section, unclick the
+       *Enable over the air firmware updates* checkbox and apply the settings.
+
+       Alternatively, through the CLI, telnet to the gateway device and run
+       the following command::
+
+         set xbee fw_update=off
+
+       If you desire to use this functionality to update firmware on
+       your mesh nodes, please do this during a time where Dia is not
+       active, and disable the feature again when complete.
+
+  Core System Changes:
+
+    *  Added support for Python 2.6 for future Digi device software releases.
+
+    *  New centralized scheduler service available in from CoreServiceManager.
+       Implemented to avoid the creation of threads (with their associated
+       memory cost).  Scheduler is requested via core.get_service("scheduler").
+       See implementation in src/core/scheduler.py
+    
+    *  Added "Python Representation" (.pyr) settings serialization system.
+       Make .pyr the default output of the make.py process.  Pre-parsing the
+       YML file to Python saves 600k of YAML parser overhead on system startup.
+
+    *  Logging sub-system re-expressed to be record number indexed rather
+       than time indexed.  Time was found to be too variable--when using
+       automatic clock adjustments--to be useful when trying to find sets of
+       log events.  Most interface changes are captured in:
+       src/channels/channel_database_interface.py
+
+    *  Rewrote the "Simple Logger"--a device capable of receiving and printing
+       trace messages of log events--to conform to new elements of the logging
+       sub-system.
+       See: src/channels/logging/simple_logger
+       
+    *  Re-implemented the file based logger.  Log file is fully journaled,
+       it can be iterated backwards and forwards and supports searching 
+       for individual records.  Increased log file density: it should
+       now be possible to pack approximately 15,000 32-bit integer samples
+       with full system meta-information inside of 512k.
+
+    *  Make system (make.py) completely restructured to use module-based
+       auto-dependency system and settings transformation system.  Many
+       pathing fixes for Windows environment.
+       See: make.py and tools/build/build_zip.py;
+
+    *  Changed all manager classes (e.g. DeviceDriverManager, ChannelManager,
+       etc.) to use an AbstractServiceManager base class used in
+       src/common/abstract_service_manager.py
+       
+    *  Added services sub-system with ServicesManager where users may start
+       their own managed services within the context of a Dia application.
+       Services now contain the ability to stop and remove running instances;
+       although this functionality is still not exposed to any external
+       presentations.
+       See: src/services
+       
+    *  Added ability to remove channels from a running system on the fly.
+    
+    *  Added "SettingsContext" class to Settings sub-system to allow objects
+       to query, modify, and apply settings on a running system
+       programmatically.  See: src/settings/settings_base.py
+
+    *  Refactored the Channels layer to more cleanly represent the
+       design philosophy of the system.  The delegation of responsibilities
+       between Channels and ChannelSources (such as ChannelSourceDeviceProperty)
+       should be more cleanly represented.
+       
+    *  Added common/helper/parse_duration.py
+       Converts strings like '5 min' or '1 hr 20 sec' to msec (or other) to
+       simplify configuring durations under Dia.
+       Supports ['ms','sec','min','hr','day']
+
+    *  Included digi_serial.py module based on "PySerial" in lib/digi_serial.py
+    
+    *  Included digi_ElementTree.py module based on "ElementTree" in
+       lib/digi_ElementTree.py
+       
+    *  Re-wrote src/common/digi_device_info.py to use ElementTree to be
+       more robust.
+       
+    *  All modules which tried to "import zigbee" now attempt to "import xbee"
+       as a first priority as the "zigbee" module has been deprecated in
+       new Digi firmware releases.
+
+  Device Changes:
+
+    *  Added XBee Auto-Enumeration Device capable of automatically adding
+       discovered XBee devices, and their channels, to the system.
+       See: src/xbee/xbee_devices/xbee_autoenum.py
+       See also: demos/autoenum
+       
+    *  Restructured all XBee device drivers to inherit from XBeeBase
+       (see src/xbee/xbee_devices/xbee_base.py) in order to support
+       auto-enumeration and promote code reuse.   
+
+    *  Rewrote DDO parameter caching mechanism for XBeeDeviceManager;
+       speeds up XBee node configuration.
+
+    *  XBeeDeviceManager now maintains its own node list.  This node list
+       is used to comprehend the network topology.  The XBee network topology
+       is used when setting up sleeping networks (when using XBee ZNet or ZB
+       modules) to ensure that the sleep parameters are set correctly.  Sleep
+       parameters are now distributed via unicast instead of broadcast.  This
+       is much more network efficient, especially for large networks.
+
+    *  Added XBeeDisplay device driver and supporting files.
+       See: src/devices/xbee/xbee_devices/xbee_display.py
+
+    *  Added SettingsDevice, a channel-oriented way of querying, modifying,
+       and persistently saving Dia settings on a running system.
+       See: src/devices/settings_device.py
+
+    *  Added example XBee Serial Devices.  These device drivers are suitable
+       for testing and educational purposes to allow individuals to more
+       easily create their own custom devices.
+       See: src/devices/xbee/xbee_devices/xbee_serial*.py
+
+    *  Added support for local DIO/AIO capability of ConnectPort X4 NEMA
+       products.
+       See: src/devices/xbee/xbee_devices/xbee_local_(a|d)io.py
+
+    *  Added device property option to allow device writers to specify
+       certain channels to never be logged.  Option is called
+       DPROP_OPT_DONOTLOG  See also: src/channels/channel.py
+
+    *  Renamed 'lux' unit to 'brightness' for all Digi light sensors to
+       reflect that they are non-calibrated, non-linear values.
+
+    *  Added YML settings for xbee_sensor driver
+       - degf to convert temperature to Fahrenheit ("F") instead of "C"
+       - trace to show/suppress the printf for normal I/O samples
+       - temperature_adjust / humidity_adjust / light_adjust as floats
+         for simple offset calibration, which enables multiple XBee Sensor
+         units to provide more consistent readings
+       Clean up the printf trace (when trace: "On") to be more user friendly
+
+    *  In the AIO driver,
+       - Removed the alarm on battery, as it causes serious problems in new AIO
+       - Add ability to turn 'off' unused channels, just means Dia ignores them 
+         (to use, set "channel_mode: Off" instead of TenV, etc)
+       - fixed the 0-10v calculation (Vantive)
+       - add ability to return the raw binary values in case external
+         linearization works more cleanly with 0-1024 than floats etc
+       Clean up the printf trace (when trace: "On") to be more user friendly
+
+    *  Changed "sample_time_ms" setting in XBee DIO Adapter driver to
+       "sleep_time_ms"
+
+    *  Various fixes and enhancements to Massa M3 and M300 drivers.
+       See: src/devices/vendors/massa
+       
+    *  Added device from RCS (TZB43 Thermostat).
+       See: src/devices/vendors/RCS
+       
+    *  Fixed with XBeeDeviceManager's "skip_list" setting wherein node
+       addresses may not be specified in mixed case hexadecimal.
+
+  Presentation Changes:
+
+    *  Renamed cwm_exist Presentation to idigi_db.  Added "secure" setting
+       to upload data via HTTPS.
+
+    *  idigi_db now includes "compact" setting to generate more-compact
+       XML--in order to save some bandwidth--by using attributes instead of
+       start and end tags.
+
+    *  Added XBeeDisplay presentation with widgets and a layout manager:
+       See: src/presentations/xbee_display/list_details.py
+
+    *  Modified SMTP presentation to use threading.Thread and host name
+       resolution for server addresses.
+    
+    *  Logging support added to Console, XML-RPC, and RCI interfaces.
+    
+    *  Added 'channel_info' command to Console, XML-RPC, and RCI interfaces.
+    
+    *  Small parsing and robustness fixes to Console Presentation.
+       
+  Services:
+  
+    *  Added software watchdog in src/services/watchdog_service.py
+       
+       
+  Demonstrations:
+  
+    *  Added XBee Auto-Enumeration demo to demos/autoenum
+
+Release Notes for Version 40002675_B1 (1.1.15):
+
+    *  Fixed make.py problems when Dia configuration (.yml) files
+       are located outside of the cfg directory.
+
+    *  Increased compatibility with generating Dia applications under
+       Cygwin.
+
+    *  Excluded unreleased and experimental driver modules from API
+       reference documentation.
+
+    *  Fixed fatal exception caused by having no configured devices
+       or presentations.
+
+    *  Modified several demo configuration file's presentation sections
+       to use the web page "idigi_dia.html"
+
+    *  Changed the default file name of the file logger to
+       "idigi_dia.log"
+
+    *  Fixed XBeeConfigBlockSleep to detect XBee ZB module router firmware
+       versions which do not support the "SM" parameter.  If the parameter
+       is set to 0 (SM_DISABLED) the block will be marked as completed
+       without having to attempt any DDO.
+
+       The XBIB XBee development board driver now functions correctly with
+       the 2141 ZB firmware shipped with the iDigi Starter Kits.
+
+    *  Removed internal DD DDO parameter cache in favor of caching all over-
+       the-air configuration commands.
+
+    *  Modified configuration queuing of sleeping end devices to defer their
+       first configuration attempt for one complete deferment cycle.  This
+       gives nodes a chance to report in autonomously and be processed
+       for configuration interruptively resulting in a net faster
+       configuration cycle.
+

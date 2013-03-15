@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<remoteConfiguration type="com.digi.dpdev.remoteConfigurationType.DPDev">
+<intAttribute key="com.digi.workbench.remoteConfiguration.DPDev.TCP_TIMEOUT" value="5"/>
+<intAttribute key="com.digi.workbench.remoteConfiguration.DPDev.SSH_PORT" value="22"/>
+<stringAttribute key="com.digi.workbench.remoteConfiguration.DPDev.X3_COM_PORT" value="None"/>
+<booleanAttribute key="com.digi.workbench.remoteConfiguration.DPDev.CW_IP_SELECTION" value="false"/>
+<stringAttribute key="com.digi.workbench.remoteConfiguration.DPDev.DEVICE_TYPE" value="ConnectPort X2"/>
+<booleanAttribute key="com.digi.workbench.remoteConfiguration.DPDev.IP_SELECTION" value="true"/>
+<booleanAttribute key="com.digi.workbench.remoteConfiguration.DPDev.USE_CONNECTWARE" value="false"/>
+<booleanAttribute key="com.digi.workbench.remoteConfiguration.DPDev.FORCE_VALIDATION" value="false"/>
+<booleanAttribute key="com.digi.workbench.remoteConfiguration.CURRENT_CONFIGURATION" value="false"/>
+<intAttribute key="com.digi.workbench.remoteConfiguration.DPDev.TELNET_PORT" value="23"/>
+<stringAttribute key="com.digi.workbench.remoteConfiguration.DPDev.CW_IP_ADDRESS" value=""/>
+<stringAttribute key="com.digi.workbench.remoteConfiguration.DPDev.TELNET_PASS" value="dbps"/>
+<booleanAttribute key="com.digi.workbench.remoteConfiguration.DPDev.VALIDATE_CONNECTION" value="true"/>
+<booleanAttribute key="com.digi.workbench.remoteConfiguration.DPDev.TELNET_REQUIRES_LOGIN" value="false"/>
+<stringAttribute key="com.digi.workbench.remoteConfiguration.DPDev.HOST_NAME" value=""/>
+<stringAttribute key="dummyL" value="false"/>
+<stringAttribute key="dummyP" value="false"/>
+<stringAttribute key="com.digi.workbench.remoteConfiguration.DPDev.CW_DEVICE_ID" value="00000000-00000000-00409DFF-FF4584E9"/>
+<stringAttribute key="com.digi.workbench.remoteConfiguration.DPDev.CW_HOST_NAME" value="my.idigi.com"/>
+<intAttribute key="com.digi.workbench.remoteConfiguration.DPDev.REBOOT_TIMEOUT" value="60"/>
+<booleanAttribute key="com.digi.workbench.remoteConfiguration.VALID_REMOTE_CONFIGURATION" value="true"/>
+<stringAttribute key="com.digi.workbench.remoteConfiguration.DPDev.IP_ADDRESS" value="10.1.10.61"/>
+<stringAttribute key="com.digi.workbench.remoteConfiguration.DPDev.TELNET_USER" value="root"/>
+</remoteConfiguration>

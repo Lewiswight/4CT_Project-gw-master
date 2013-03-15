@@ -1,0 +1,33 @@
+devices:
+
+  - name: ab
+    driver: devices.vendors.rockwell.eip_pccc_client:EipPcccDevice
+    settings:
+        poll_rate_sec: 15
+        poll_clean_minutes: 0
+        target: "10.9.92.22"
+        round: 3
+        poll_list:
+            - pollname: in01
+              pollinfo: { 'elm':'F8:0', 'cnt':5 }
+              channels:
+                - parse: { 'nam':'first',  'ofs':0,  'frm':'<f', 'unt':'1st' }
+                - parse: { 'nam':'second', 'ofs':4,  'frm':'<f', 'unt':'2nd' }
+                - parse: { 'nam':'third',  'ofs':8,  'frm':'<f', 'unt':'3rd' }
+                - parse: { 'nam':'fourth', 'ofs':12, 'frm':'<f', 'unt':'4th' }
+                - parse: { 'nam':'fifth',  'ofs':16, 'frm':'<f', 'unt':'5th' }
+
+presentations:
+
+  # Create a new console instance on TCP port 4146.  It can be connected
+  # two by using any telnet client.
+  - name: console0
+    driver: presentations.console.console:Console
+    settings:
+        type: tcp
+        port: 4146
+
+tracing:
+    default_level: "info"
+    default_handler:
+      - stderr

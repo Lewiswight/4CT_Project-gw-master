@@ -1,0 +1,73 @@
+devices:
+  - name: xbee_device_manager
+    driver: devices.xbee.xbee_device_manager.xbee_device_manager:XBeeDeviceManager
+
+  - name: aio_voltage
+    driver: devices.xbee.xbee_devices.xbee_aio:XBeeAIO
+    settings:
+        xbee_device_manager: xbee_device_manager
+        extended_address: "00:13:a2:00:40:0a:12:ab!"
+        sample_rate_ms: 1000
+        power: "On"
+        channel1_mode: "TenV"
+        channel2_mode: "TenV"
+        channel3_mode: "TenV"
+        channel4_mode: "TenV"
+
+  - name: aio_current
+    driver: devices.xbee.xbee_devices.xbee_aio:XBeeAIO
+    settings:
+        xbee_device_manager: xbee_device_manager
+        extended_address: "00:13:a2:00:40:0a:2c:4f!"
+        sample_rate_ms: 1000
+        power: "On"
+        channel1_mode: "CurrentLoop"
+        channel2_mode: "CurrentLoop"
+        channel3_mode: "CurrentLoop"
+        channel4_mode: "CurrentLoop"
+
+  - name: aio_mixed
+    driver: devices.xbee.xbee_devices.xbee_aio:XBeeAIO
+    settings:
+        xbee_device_manager: xbee_device_manager
+        extended_address: "00:13:a2:00:40:0a:12:5b!"
+        sample_rate_ms: 1000
+        power: "On"
+        channel1_mode: "TenV"
+        channel2_mode: "CurrentLoop"
+        channel3_mode: "Differential"
+        channel4_mode: "Differential"
+
+  - name: fixed_sensors
+    driver: devices.transforms_device:TransformsDevice
+    settings:
+      - name: massa_range
+        unit: cm
+        channels: 
+          - aio_voltage.channel1_value
+        expr: "2.0 * c[0] + 9.7373"
+
+      - name: pmc_scale
+        unit: "%"
+        channels: 
+          - aio_current.channel1_value
+        expr: "6.25 * c[0] - 25"
+
+loggers:
+  - name: embedded_log
+    driver: channels.logging.file_logger.file_logger:FileLogger
+    settings:
+        filename: WEB/python/idigi_dia.log
+        event_volume_size_k: 128
+        sample_index_frequency: 30
+
+presentations:        
+  - name: console0
+    driver: presentations.console.console:Console
+    settings:
+        type: tcp
+        port: 4146
+
+  - name: web
+    driver: presentations.web.web:Web
+

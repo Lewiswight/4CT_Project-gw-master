@@ -1,0 +1,224 @@
+## Configuration file for testing the XBee named attributes device driver.
+
+ 
+## Description
+#  ===========
+#
+#  This sample implements a client for a simple "named attribute"
+#  protocol.  Clients can get and (for read/write attributes) set the
+#  attributes by name.  Requests are sent as plain text, using the
+#  following format:
+#
+#  Requests (sent to the Rabbit):
+#  name?          Sends the value of attribute <name>.
+#  name           Sends the value of attribute <name> (? operator is implied).
+#  name=value     Set attribute <name> to <value>.
+#
+#  In requests, name can end with an asterisk (*) as a wildcard to match
+#  any remaining characters.  For example, "led*?" will match "led1",
+#  "led2", "led3" and "led4" (and therefore generate 4 responses).
+#  Wildcards work for setting values as well (e.g., dout*=1 to set all
+#  digital outputs to 1).
+#
+#  Note: due to limits of the frame buffering between the BL4S100 and its
+#  XBee module, some responses may be dropped if too many attributes are
+#  requested at once (i.e., via the autorefresh web page).
+#
+#  Responses (from the Rabbit):
+#  name!          Error response, no attribute called <name>.
+#  name!value     Error response, unable to set <name> to <value>.
+#  name:value     Successful response, attribute <name> is set to <value>.
+#                 (Sent in resopnse to query (?) or assign (=) operators.)
+#
+## Usage
+#  ====================================================================
+#     -  Power up the ConnectPort and run the named_attributes.yml file
+#        with Dia.
+#
+#     -  Run this sample on the BL4S100.
+#
+#     Compile the Dia for the named attributes demo:
+#  --------------------------------------------------------------------
+#
+#     1. Open a command window and cd to the location of the Dia.
+#
+#     2. Edit demos\rabbit\named_attributes\named_attributes.yml and set
+#        the extended_address parameter to the address of the XBee on
+#        your BL4S100. The address can be found on the underside of the
+#        XBee as two strings of eight hexadecimal digits. Format these
+#        with ':' between each pair, and a '!' at the end, as in: 
+#
+#           extended_address: "00:13:a2:00:40:0a:00:c0!"
+#
+#        IMPORTANT: Do not edit .yml or .py files in the Dynamic C
+#        editor. The Dynamic C editor may add tabs to your file. YAML
+#        and python interpret tabs as eight spaces, which is not the
+#        normal display setting in Dynamic C.  Both python and YAML
+#        use indentation level to denote instruction blocks.
+#
+#     3. At the command prompt, type 
+#     
+#        python make.py demos\rabbit\named_attributes\named_attributes.yml
+#        
+#        (Use python 2.4.3 available from
+#        http://www.python.org/download/releases/2.4.3/).
+#
+#     4. Upload dia.py, bin\dia.zip and
+#        demos\rabbit\named_attributes\named_attributes.yml to the
+#        ConnectPort: 
+#
+#        a. Open up a web browser and enter the IP address of the
+#           ConnectPort.
+#        b. From the menu at the left, select Python under Applications.
+#        c. Click on the "Browse" button, and navigate to
+#           bin\dia.zip.
+#        d. Click "Upload."
+#        e. Repeat steps c and d for
+#           demos\rabbit\named_attributes\named_attributes.yml.
+#
+#        Note that dia.py only needs to be loaded once for a given
+#        version of the Dia.
+#
+#     Connect the Demo Board to the BL4S100:
+#  --------------------------------------------------------------------
+#
+#     Using the bundle of wires in the kit, make the following connections:
+#
+#     1. Connect the demo board signals labeled LED1, LED2, LED3, and LED4
+#        to the BL4S100 signals labeled OUT0, OUT1, OUT2, and OUT3.
+#
+#     2. Connect the demo board signals labeled SW1, SW2, SW3, and SW4 to
+#        the BL4S100 signals labeled IN0, IN1, IN2, and IN3.
+#
+#     3. Connect the demo board signal +V_ALT to the BL4S100 signal AIN0.
+#
+#     4. Connect the demo board GND near the LED signal to the BL4S100 GND
+#        near the IN and OUT signals, the demo board GND near V_ALT to the
+#        GND near AIN0, and the demo board +V to the BL4S100 +5V. Note
+#        that both boards have multiple signals labeled GND. Use the GND
+#        nearest the signal(s) being grounded. 
+#
+#     Compile the and run the BL4S100 named attributes sample program:
+#  --------------------------------------------------------------------
+#
+#     1. Open up Dynamic C.
+#
+#     2. Open up the sample program
+#        Samples\iDigi\BL4S100\named_attributes.c.
+#
+#     3. In the menu, open up "Options/Project Options", and in the
+#        "Defines" tab, enter
+#
+#           DEFAULT_EXTPANID = "0x0123456789ABCDEF"
+#
+#
+#        DEFAULT_EXTPANID is the extended PAN ID from the ConnectPort.
+#        You can find the ConnectPort's extended PAN ID by clicking on
+#        Configuration > XBee Network > Extended Address on the
+#        ConnectPort's web interface. You will need this same define for
+#        all of the Rabbit XBee samples.
+#
+#        At the bottom of the Defines box, click on "OK".
+#
+#     4. Hit the green arrow icon in the tool bar to compile and run the
+#        sample. 
+#
+#     Run the sample on the ConnectPort:
+#  --------------------------------------------------------------------
+#
+#     1. Using a telnet client, telnet to the ConnectPort.
+#
+#     2. At the #> prompt, type in python dia.py
+#        named_attributes.yml, and hit enter. 
+#
+#     Interact with the ConnectPort and BL4S100:
+#  --------------------------------------------------------------------
+#
+#     1.	Browse to idigi_dia.html on the ConnectPort to see and interact
+#        with channels from the BL4S100.
+#
+#     2.	Telnet to port 4146 on the ConnectPort to interact with the Dia
+#        console presentation.
+#
+
+
+devices:
+
+  # Instantiate an XBee Device Manager instance.
+  # 
+  # A single instance of the XBee Device Manager is required when using any
+  # XBee device drivers on the Dia.  The XBee Device Manager is responsible
+  # for multiplexing data communications and managing node configurations.
+  #
+  - name: xbee_device_manager
+    driver: devices.xbee.xbee_device_manager.xbee_device_manager:XBeeDeviceManager
+
+  # Instantiate the named attributes driver to talk to the BL4S100:
+  - name: attrs
+    driver: devices.rabbit.xbee_named_attributes:XBeeNamedAttributes
+    settings:
+        # Note: the xbee_device_manager setting is being set to
+        # "xbee_device_manager", which is the name of the instance of the
+        # XBeeDeviceManager, above.
+        xbee_device_manager: "xbee_device_manager"
+        # Change the below extended_address setting to match the 64-bit
+        # hardware address of the radio installed on the BL4S100.  (The
+        # address is on the underside of the XBee.)
+        extended_address: "00:13:a2:00:40:0a:00:c0!"
+
+        # Required endpoint, profile, and cluster of local and remote device
+        endpoint: 2
+        profile: 42
+        cluster: 7
+
+        # Optional poll rate (in seconds)
+        poll_rate: 2.0
+
+        # Required: settings for local and remote channel names
+        attributes:
+            # attribute names become channels.  The list of options (in
+            # order) are:
+            # - type - required; choose from str, int, or float
+            # - settable/gettable - required if initial value set, otherwise
+            # defaults to gettable.  NB: these correspond to
+            #     DPROP_PERM_SET|DPROP_PERM_REFRESH and
+            #     DPROP_PERM_GET|DPROP_PERM_REFRESH in Dia parlance.  That is,
+            #     we can always request the latest value from the device.
+            # - initial value of type: defaults to "", 0, or 0.0.
+
+            # The '*' attribute requests that the values of all attributes be
+            # sent:
+            #*: [str, gettable, "Refresh all"]
+
+            led1: [str, settable, "off"]
+            led2: [str, settable, "on"]
+            led3: [str, settable, "off"]
+            led4: [str, settable, "on"]
+
+            sw1: [str, gettable]
+            sw2: [str, gettable]
+            sw3: [str, gettable]
+            sw4: [str, gettable]
+
+            ain0: [float, gettable]
+            ain1: [float, gettable]
+
+            uptime: [int, gettable]
+
+presentations:
+  # The standard Dia command-line console
+  - name: console0
+    driver: presentations.console.console:Console
+    settings:
+        type: tcp
+        port: 4146
+
+  # Use the web presentation that auto-updates the displayed
+  # values every 'polling' seconds.  If polling is 0, no auto-update
+  # occurs.  
+  - name: web2
+    driver: presentations.web.web:Web
+    settings:
+        page: idigi_dia.html
+        polling: 2
+

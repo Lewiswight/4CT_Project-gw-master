@@ -1,0 +1,29 @@
+devices: 
+  - name: xbee_device_manager
+    driver: devices.xbee.xbee_device_manager.xbee_device_manager:XBeeDeviceManager
+
+  - name: xbee_autoenum
+    driver: devices.xbee.xbee_devices.xbee_autoenum:XBeeAutoEnum
+    settings: 
+        discover_rate: 65
+        xbee_device_manager: "xbee_device_manager"
+        devices: 
+          - name: "mc"
+            driver: "custom_devices.MistAway_Controller_updated_Dia2:XBeeSerialTerminal"
+            settings: 
+                xbee_device_manager: "xbee_device_manager"
+                extended_address: ""
+                sample_rate_sec: 3600
+
+
+presentations: 
+  - name: rci1
+    driver: presentations.rci.rci_handler:RCIHandler
+    settings: 
+        target_name: "dia"
+
+  - name: Uploader
+    driver: custom_presentations.presentations.idigi_db.MistAwayUpload2:Uploader
+    settings: 
+        interval: 60
+        sample_threshold: 10

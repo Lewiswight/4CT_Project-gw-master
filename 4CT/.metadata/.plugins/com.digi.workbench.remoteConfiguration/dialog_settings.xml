@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="com.digi.workbench.remoteConfiguration.REMOTE_CONFIGURATIONS_DIALOG_SECTION">
+		<item value="0" key="com.digi.workbench.remoteConfiguration.DIALOG_ORIGIN_Y"/>
+		<item value="778" key="com.digi.workbench.remoteConfiguration.DIALOG_SASH_WEIGHTS_2"/>
+		<item value="221" key="com.digi.workbench.remoteConfiguration.DIALOG_SASH_WEIGHTS_1"/>
+		<item value="com.digi.dpdev.remoteConfigurationType.DPDev, " key="com.digi.workbench.remoteConfiguration.EXPANDED_NODES"/>
+		<item value="com.digi.dpdev.remoteConfigurationType.DPDev" key="com.digi.workbench.remoteConfiguration.LAST_TYPE_SELECTED"/>
+		<item value="0" key="com.digi.workbench.remoteConfiguration.DIALOG_ORIGIN_X"/>
+		<item value="664" key="com.digi.workbench.remoteConfiguration.DIALOG_HEIGHT"/>
+		<item value="929" key="com.digi.workbench.remoteConfiguration.DIALOG_WIDTH"/>
+	</section>
+</section>

@@ -1,0 +1,26 @@
+devices: 
+  - name: template_device
+    driver: devices.template_device:TemplateDevice
+
+  - name: transform_device
+    driver: devices.transforms_device:TransformsDevice
+    settings: 
+      - name: "count_by_two"
+        channels: 
+          - template_device.counter
+        expr: "c[0] * 2"
+
+presentations: 
+  - name: rci
+    driver: presentations.rci.rci_handler:RCIHandler
+
+  - name: idigi_db
+    driver: presentations.idigi_db.idigi_db:iDigi_DB
+    settings: 
+        interval: 10
+        sample_threshold: 50
+        collection: "x3_counter"
+        file_count: 10
+        filename: "counter_samples"
+        channels: [template_device.counter, transform_device.count_by_two]
+        secure: False

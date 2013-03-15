@@ -1,0 +1,54 @@
+Rockwell Ethernet/IP (PCCC only) Import Client Add-on for Dia, 31-August-2011
+
+Supported targets (those marked NO are not yet supported)
+- Yes: Ethernet/IP to PCCC files on SLC5/05 or MicroLogix via unconnected_send
+- NO : Ethernet/IP to PCCC files on ControlLogix/CompactLogix (needs e-path ehancements)
+- NO : serial DF1 PLC on Digi serial port
+- NO : serial DF1 PLC on XBee serial adapter
+- NO : AB/Ethernet (CSPv4) only PLC (like older PLC5 or SLC5/05)
+
+Requirements:
+- Dia 1.4.x or higher (requires the 'tracer' functionality)
+
+Runs on:
+- should run on any Digi with Python and an Ethernet port, including but not limited to:
+  * Digi ConnectPort X2D
+  * Digi ConnectPort X4/X4H
+  * Digi Connect SP/WiSP
+
+More general Modbus and Digi information is available here:
+http://www.digi.com/wiki/developer/index.php/Category:Rockwell_Allen-Bradley
+
+Condensed info is here:
+
+* Importing Modbus Data into Dia:
+1) You must enable the normal X4/X8 IA Modbus engine with Modbus/TCP in UDP/IP listening on port 502
+2) You must set up the appropriate 'IA routes' or destinations to allow a Modbus master to use unit id to query the desired Modbus device you wish to export data from.
+3) You configure a YML block such as below
+
+  - name: mb01
+    driver: devices.modbus.mbus_udp_device:MBusUDPDevice
+    settings:
+        poll_rate_sec: 15
+        extended_address: "00:13:a2:00:40:32:15:1a!"
+        trace: 'debug'
+        round: 3
+        poll_list:
+            - poll: in01
+              pollinfo: { 'uid':10, 'fnc':3, 'ofs':0, 'cnt':20 }
+              channels:
+                - parse: { 'nam':'acTotalEnergy', 'ofs':0, 'frm':'[L', 'unt':'Wh' }
+                - parse: { 'nam':'uptime', 'ofs':2, 'frm':'[L', 'unt':'Wh' }
+                - parse: { 'nam':'acCurrent','ofs':4,'frm':'[H','unt':'A' }
+                - parse: { 'nam':'acVoltage', 'ofs':5, 'frm':'[H', 'unt':'V' }
+                - parse: { 'nam':'acFrequency', 'ofs':6, 'frm':'[H', 'unt':'Hz' }
+                - parse: { 'nam':'acPower', 'ofs':7, 'frm':'[h', 'unt':'W' }
+            - poll: in02
+              pollinfo: { 'uid':11, 'fnc':3, 'ofs':0, 'cnt':20 }
+              channels:
+                - parse: { 'nam':'acTotalEnergy', 'ofs':0, 'frm':'[L', 'unt':'Wh' }
+                - parse: { 'nam':'uptime', 'ofs':2, 'frm':'[L', 'unt':'Wh' }
+                - parse: { 'nam':'acCurrent','ofs':4,'frm':'[H','unt':'A' }
+                - parse: { 'nam':'acVoltage', 'ofs':5, 'frm':'[H', 'unt':'V' }
+                - parse: { 'nam':'acFrequency', 'ofs':6, 'frm':'[H', 'unt':'Hz' }
+                - parse: { 'nam':'acPower', 'ofs':7, 'frm':'[h', 'unt':'W' }

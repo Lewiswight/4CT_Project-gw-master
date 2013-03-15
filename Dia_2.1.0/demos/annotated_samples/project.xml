@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project label="Annotated Samples Dia extension" visible="true">
+  <description>
+    &lt;p&gt;Demonstrates how to extend the core Sample object in Dia
+    to provide added information that gets carried throughout the
+    entire Dia data path.&lt;/p&gt;
+  </description>
+  <type>com.digi.dpdev.project.dia</type>
+  <data_path>data</data_path>
+  <id>annotated_samples</id>
+  <mainFile>annotated_samples.yml</mainFile>
+  <sampleFiles></sampleFiles>
+  <sourceFolder></sourceFolder>
+  <icon></icon>
+  <platforms>
+    <platform>ConnectPort X2</platform>
+    <platform>ConnectPort X2B</platform>
+    <platform>ConnectPort X2D</platform>
+    <platform>ConnectPort X2e ZB</platform>
+    <platform>ConnectPort X2e Wi-Fi ZB</platform>
+    <platform>ConnectPort X2 SE</platform>
+    <platform>ConnectPort X2 Wireless M-Bus</platform>
+    <platform>ConnectPort X3</platform>
+    <platform>ConnectPort X3R</platform>
+    <platform>ConnectPort X4</platform>
+    <platform>ConnectPort X4 H</platform>
+    <platform>ConnectPort X4 IA</platform>
+    <platform>ConnectPort X4 NEMA</platform>
+    <platform>ConnectPort X4 4G</platform>
+    <platform>ConnectPort X5</platform>
+    <platform>ConnectPort X5 F ZB GPRS</platform>
+    <platform>ConnectPort X5 F ZB Wifi GPRS</platform>
+    <platform>ConnectPort X5 R ZB GPRS</platform>
+    <platform>ConnectPort X5 R ZB Wifi GPRS</platform>
+    <platform>ConnectPort X5 R ZB Wifi CDMA</platform>
+    <platform>ConnectPort X5 R Wifi GPRS Iridium</platform>
+    <platform>ConnectPort X8</platform>
+    <platform>Embedded Gateway</platform>
+    <platform>ConnectCore 3G 9P 9215</platform>
+    <platform>ConnectPort WAN Wi</platform>
+    <platform>ConnectPort WAN VPN</platform>
+    <platform>ConnectPort WAN GPS</platform>
+    <platform>Connect WAN 3G IA</platform>
+    <platform>Digi Connect SP Python</platform>
+    <platform>Digi Connect Wi-SP Python</platform>
+    <platform>Digi Connect Wi-SP 16M Python</platform>
+    <platform>X-Trak 3</platform>
+  </platforms>
+</project>

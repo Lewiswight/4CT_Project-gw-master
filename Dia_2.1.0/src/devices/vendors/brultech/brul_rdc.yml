@@ -1,0 +1,34 @@
+# test YML for Lynn's AIO Plus work
+
+devices:
+
+  - name: tick_tock
+    driver: devices.experimental.alarm_clock_device:AlarmClockDevice
+    settings:
+        printf: minute
+
+  - name: xbee_device_manager
+    driver: devices.xbee.xbee_device_manager.xbee_device_manager:XBeeDeviceManager
+
+  - name: home
+#    driver: devices.vendors.brultech.robust_ecm:ECM1240_Xbee
+    driver: devices.vendors.brultech.sunspec:ECM1240_SunSpec
+    settings:
+        xbee_device_manager: xbee_device_manager
+        extended_address: "00:13:a2:00:40:4c:00:82!"
+        robust_router: True
+        dev_poll_rate_sec: 0
+        dev_trace: 'debug'
+
+presentations:
+
+  - name: console0
+    driver: presentations.console.console:Console
+    settings:
+        type: tcp
+        port: 4146
+
+tracing:
+    default_level: "debug"
+    default_handler:
+      - stderr

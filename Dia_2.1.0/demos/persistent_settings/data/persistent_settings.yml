@@ -1,0 +1,21 @@
+
+
+devices:
+
+  - name: persist
+    driver: custom_devices.persistent_settings:PersistentSettingsSampleDevice
+    # No required settings, modify and save the settings through the presentations
+
+presentations:
+  # Interact with the demo through a network command-line
+  - name: console0
+    driver: presentations.console.console:Console
+    settings:
+        type: tcp
+        port: 4146
+
+  # Interact with the demo through a web interface
+  - name: web0
+    driver: presentations.web.web:Web
+    settings:
+        page: idigi_dia.html

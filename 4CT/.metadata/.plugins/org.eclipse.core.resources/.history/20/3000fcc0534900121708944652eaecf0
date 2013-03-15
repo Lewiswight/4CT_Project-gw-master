@@ -1,0 +1,13 @@
+#Tue Dec 18 14:26:38 CST 2012
+Dia_path=C\:/Users/Lewis/Dropbox/Dia releases/Dia versions/New Dia_1.4.14
+IP=10.1.10.88
+autocontained_project=false
+compile_sources=true
+configuration_file=HouseLynx1.yml
+device=ConnectPort X2
+eclipse.preferences.version=1
+remote_config_name=X2e WiFi
+remove_docstrings=true
+use_Dia_defaults=true
+use_Dia_version=false
+use_current_remote_config=false

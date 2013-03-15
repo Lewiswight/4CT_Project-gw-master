@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>iDigi Dia and iDigi Platform Demo</title>
+
+<script type="text/javascript" src="/javascript/swfobject1-5/swfobject.js"></script>
+	<script src="/javascript/prototype.js"></script>
+	<script src="/javascript/builder.js"></script>
+	<script src="/javascript/effects.js"></script>
+	<script src="/javascript/dragdrop.js"></script>
+	<script src="/javascript/scriptaculous.js"></script>
+	<script src="/javascript/controls.js"></script>
+	<script src="/javascript/slider.js"></script>
+	<script src="/javascript/sound.js"></script>
+	<script src="/javascript/slideshow.js"></script>
+   <link href="/css/default_style.css" type="text/css" rel="stylesheet">
+
+</head>
+<body><div class="wrapper">
+   
+   <div id="content"  >
+      <strong>Please wait while fetching sensor data</strong>
+   </div>
+   
+	<script>	
+	update_content("demo.py")
+	</script>
+	
+	<div class="push"></div>
+</div>
+         <div class="footer">
+             <center> <h1>How It Works</h1> </center>
+             <div style="text-align:center">
+                <div id=1 class="borders_off" >
+                    <img src="/images/1.png" onclick="update_content('/sensor_english.html');window.current=1;border_on(1)"/>
+                </div>
+                <div id=2 class="borders_off" >
+                    <img src="/images/6.png" onclick="update_content('/localarea_english.html');window.current=2;border_on(2)"/>
+                </div>
+                <div id=3 class="borders_off" >
+                    <img src="/images/2.png" onclick="update_content('/gateways_english.html');window.current=3;border_on(3)"/>
+                </div>
+                <div id=4 class="borders_off" >
+                    <img src="/images/3.png" onclick="update_content('/widearea_english.html');window.current=4;border_on(4)"/>
+                </div>
+                <div id=5 class="borders_off" >
+                    <img src="/images/4.png" onclick="update_content('/idigi_english.html');window.current=5;border_on(5)"/>
+                </div>
+                <div id=6 class="borders_off" >
+                    <img src="/images/5.png" onclick="update_content('/applications_english.html');window.current=6;border_on(6)"/>
+                </div>
+                <div id=0 class="borders_on" >
+                     <img src="/images/0.png" onclick="update_content('demo.py');window.current=0;border_on(0)"/>
+                </div>
+             </div>
+             <center>
+		          <a id=backward onclick="nback();return false;">
+		              <img src="/images/back.png" border="0" />
+		          </a>
+		          
+		          <a onclick="update_content('demo.py');borders_off();border_on(0);this.blur();window.current=0">
+		              <img style="padding-bottom:10px" border="0" src="/images/home.png" /> 
+		          </a>
+		          
+		          <a id=forward onclick="nnext();return false;">
+		              <img src="/images/forward.png" border="0" />
+		          </a>
+             </center>
+         </div>
+</body>
+</html>

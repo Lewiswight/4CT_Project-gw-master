@@ -1,0 +1,12 @@
+#Fri Aug 03 16:47:22 CDT 2012
+Dia_path=C\:/Program Files/Digi/python/DevTools-2.1/Dia/Dia_2.1.0/
+autocontained_project=false
+compile_sources=true
+configuration_file=green_kit.yml
+device=ConnectPort X2
+eclipse.preferences.version=1
+remote_config_name=New_configuration
+remove_docstrings=true
+use_Dia_defaults=true
+use_Dia_version=true
+use_current_remote_config=true

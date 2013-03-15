@@ -1,0 +1,8 @@
+<chart paletteThemeColor='009e58' bgColor='FFFFFF'
+       lowerLimit='0' upperLimit='20' numberSuffix=' ltrs.'
+       decimals='2' ticksOnRight='0'
+       dataStreamURL='/fusionwidgets/get/tank_status.left_volume'
+       refreshInterval='3'>
+   <value>0</value> 
+</chart>
+

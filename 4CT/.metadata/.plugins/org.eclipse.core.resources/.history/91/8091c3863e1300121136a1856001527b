@@ -1,0 +1,36 @@
+devices: 
+  - name: xbee_device_manager
+    driver: devices.xbee.xbee_device_manager.xbee_device_manager:XBeeDeviceManager
+    settings: 
+        update_skiplist: false
+
+  - name: xbee_autoenum
+    driver: devices.xbee.xbee_devices.xbee_autoenum:XBeeAutoEnum
+    settings: 
+        xbee_device_manager: "xbee_device_manager"
+        devices: 
+          - name: "mc"
+            driver: "custom_devices.MistAway_Controller_update:XBeeSerialTerminal"
+            settings: 
+                xbee_device_manager: "xbee_device_manager"
+                extended_address: ""
+                sample_rate_sec: 32
+
+        discover_rate: 60
+
+presentations: 
+  - name: upload
+    driver: custom_presentations.presentations.idigi_db.idigi_dbM:iDigi_DB
+    settings: 
+        interval: 120
+        sample_threshold: 10
+
+  - name: rci
+    driver: custom_presentations.presentations.rci.rci_handler:RCIHandler
+    settings: 
+        target_name: "dia"
+
+  - name: web0
+    driver: presentations.web.web:Web
+    settings: 
+        title: "MistAway Test UI"

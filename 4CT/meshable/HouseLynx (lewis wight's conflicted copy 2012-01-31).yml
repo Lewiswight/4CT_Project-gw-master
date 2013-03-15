@@ -1,0 +1,62 @@
+devices: 
+  - name: xbee_device_manager
+    driver: devices.xbee.xbee_device_manager.xbee_device_manager:XBeeDeviceManager
+
+  - name: xbee_autoenum
+    driver: devices.xbee.xbee_devices.xbee_autoenum:XBeeAutoEnum
+    settings: 
+        discover_rate: 60
+        xbee_device_manager: "xbee_device_manager"
+        devices: 
+          - name: "TempLight"
+            driver: "custom_devices.xbee_sensor:XBeeSensor"
+            settings: 
+                xbee_device_manager: "xbee_device_manager"
+                extended_address: ""
+                sample_rate_ms: 60000
+          - name: "WallRouter"
+            driver: "custom_devices.xbee_xbr:XBeeXBR"
+            settings: 
+                xbee_device_manager: "xbee_device_manager"
+                extended_address: ""
+                sample_rate_ms: 30000
+          - name: "TempLight"
+            driver: "custom_devices.serial_temp:XBeeSerialTerminal"
+            settings: 
+                xbee_device_manager: "xbee_device_manager"
+                extended_address: ""
+                sample_rate_ms: 30000
+          - name: "thermostat"
+            driver: "custom_devices.xbee_serial_terminal:XBeeSerialTerminal"
+            settings: 
+                xbee_device_manager: "xbee_device_manager"
+                extended_address: ""
+                sample_rate_sec: 10
+          - name: "dio"
+            driver: "custom_devices.xbee_dio:XBeeDIO"
+            settings: 
+                xbee_device_manager: "xbee_device_manager"
+                extended_address: ""
+                power: true
+                channel1_dir: "Out"
+                channel2_dir: "Out"
+                channel3_dir: "In"
+                channel4_dir: "In"
+                channel1_source: ""
+                channel2_source: ""
+
+
+presentations: 
+  - name: idigi_db1
+    driver: custom_presentations.presentations.idigi_db.idigi_db3:iDigi_DB
+    settings: 
+        interval: 30
+        sample_threshold: 10
+
+  - name: rci
+    driver: custom_presentations.presentations.rci.rci_handler:RCIHandler
+    settings: 
+        target_name: "dia"
+
+  - name: web0
+    driver: presentations.web.web:Web

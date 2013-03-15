@@ -1,0 +1,5 @@
+#Thu Nov 10 18:14:53 CST 2011
+compile_sources=true
+configuration_file=green_kit.yml
+eclipse.preferences.version=1
+remove_docstrings=true

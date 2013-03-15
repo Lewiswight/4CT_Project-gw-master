@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;HouseLynx_A/dia.yml&apos; to &apos;HouseLynx.yml&apos;" description="Rename resource &apos;dia.yml&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="dia.yml" name="HouseLynx.yml" stamp="1320971605271" updateReferences="true"/>
+</session>

@@ -1,0 +1,21 @@
+devices: 
+  - name: xbee_device_manager
+    driver: devices.xbee.xbee_device_manager.xbee_device_manager:XBeeDeviceManager
+
+  - name: xbee_autoenum
+    driver: devices.xbee.xbee_devices.xbee_autoenum:XBeeAutoEnum
+    settings: 
+        discover_rate: 30
+        xbee_device_manager: "xbee_device_manager"
+        devices: 
+          - name: "mc3"
+            driver: "custom_devices.MistAway_Controller_update:XBeeSerialTerminal"
+            settings: 
+                xbee_device_manager: "xbee_device_manager"
+                extended_address: ""
+                sample_rate_sec: 30
+
+
+presentations: 
+  - name: web0
+    driver: presentations.web.web:Web

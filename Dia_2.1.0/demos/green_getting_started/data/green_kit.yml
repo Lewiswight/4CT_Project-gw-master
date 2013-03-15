@@ -1,0 +1,79 @@
+
+## Template iDigi Device Integration Application Framework Configuration File
+## for the iDigi Dia Green Demonstration Kit
+
+devices:
+  # Instantiate an XBee Device Manager instance.
+  # 
+  # A single instance of the XBee Device Manager is required when using any
+  # XBee device drivers on the Dia.  The XBee Device Manager is responsible
+  # for multiplexing data communications and managing node configurations.
+  #
+  - name: xbee_device_manager
+    driver: devices.xbee.xbee_device_manager.xbee_device_manager:XBeeDeviceManager
+
+  # Instantiate and XBee XBIB development board instance:
+  - name: xbib0
+    driver: devices.xbee.xbee_devices.xbee_xbib:XBeeXBIB
+    settings:
+        # Note: the xbee_device_manager setting is being set to
+        # "xbee_device_manager", which is the name of the instance of the
+        # XBeeDeviceManager, above.
+        xbee_device_manager: "xbee_device_manager"
+        # EDIT: Change the below extended_address setting to match the
+        # hardware address of the radio installed in your development
+        # board:
+        extended_address: "00:13:a2:00:40:0a:4a:b5!"
+
+  - name: sensor0
+    driver: devices.xbee.xbee_devices.xbee_sensor:XBeeSensor
+    settings:
+        xbee_device_manager: "xbee_device_manager"
+        # EDIT: Change this address to match the address of your sensor:
+        extended_address: "00:13:a2:00:40:53:2a:e0!"
+        # Configure our XBee Sensor to sleep and sample every 5 seconds:
+        sleep: True
+        sample_rate_ms: 5000
+
+  # Add our Wall Router Device:
+  - name: wall_router0
+    driver: devices.xbee.xbee_devices.xbee_xbr:XBeeXBR
+    settings:
+        xbee_device_manager: "xbee_device_manager"
+        # EDIT: Change this address to match the address of your wall router:
+        extended_address: "00:13:a2:00:40:3e:26:47!"
+        # Configure our Wall Router to send a new sample every 5 seconds:
+        sample_rate_ms: 5000
+
+  # Upload data to the iDigi XML database using the thresholds
+  # given below:
+  - name: edp_upload
+    driver: devices.edp_upload:EDPUpload
+    settings:
+        interval: 60
+        sample_threshold: 25
+        collection: green_demo
+        file_count: 10
+        filename: channel_samples
+
+presentations:
+  # Enable a console, reachable by connecting a telnet client to TCP port
+  # 4146:
+  - name: console0
+    driver: presentations.console.console:Console
+    settings:
+        type: tcp
+        port: 4146
+
+  # Enable a web interface available on http://<ip of ConnectPort>/idigi_dia
+  - name: web0
+    driver: presentations.web.web:Web
+    settings:
+        page: idigi_dia
+
+  # Enable the Dia framework to answer web-service requests from the iDigi Platform:
+  - name: rci
+    driver: presentations.rci.rci_handler:RCIHandler
+    settings:
+        target_name: idigi_dia
+

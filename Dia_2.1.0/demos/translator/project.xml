@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+ <project label="Translator" visible="true">
+  <description>&lt;p&gt;iDigi Dia project sample containing a custom device (translator) and a custom
+  presentation (channel viewer).&lt;/p&gt;
+  </description>
+  <demo_requirements>
+  To run this example you will need:
+    * A Digi Python compatible device to host the application.
+    
+  This example requires the Device Manager's Connection Mode = Local Area Network/USB/Serial
+  (set under the Device Manager’s General Tab).
+  </demo_requirements>
+  <demo_setup>
+  1) Make sure the hardware is set up correctly:
+       a) The Digi device is powered on.
+       b) The Digi device is connected directly to the PC or to the Local 
+          Area Network (LAN) by the Ethernet cable. In case the device does 
+          not have Ethernet interface, make sure it is connected directly to 
+          the PC by the corresponding USB or serial cable.
+          
+  2) If you are using a ConnectPort X3 device:
+       a) Configure the iDigi Dia elements using the Smart Project Editor:
+           * Set the 'Console' presentation type to 'serial'
+             Type: serial
+           * Remove the 'Web' presentation.
+           
+       b) Connect the device DB-9 serial port to the PC.
+       
+       c) This demo requires a serial console terminal in order to interact 
+          with the application. You can use the embedded terminal included 
+          with the Digi ESP for Python or any other serial terminal 
+          application.
+          
+          Configure the terminal and open a serial connection with the Digi 
+          device:
+               * Baud Rate: 115200
+               * Data Bits: 8
+               * Stop Bits: 1
+               * Parity: None
+               * Flow Control: None
+          
+          Refer to the topic "Terminal view" of the "Digi ESP for Python" 
+          documentation for more information.
+  </demo_setup>
+  <demo_run>
+  The example is already configured, so all you need to do is to build and 
+  launch the project.
+  
+  While the application is running the custom presentation will print out
+  every 5 seconds a table with the values of the 'translator0.InputString' 
+  and 'translator0.OutputString' channels.
+  
+  Use the iDigi Dia Console presentation to inspect and change the channel 
+  values. This presentation is a Command Line Interface (CLI) for browsing 
+  channels, system settings and historical logs:
+     1) For ConnectPort X3 and X-Trak 3 devices, the CLI is enabled on the 
+        Serial Port of the device.
+        
+     2) For the rest of devices, the CLI is enabled on TCP port 4146.
+     
+  Connecting to the CLI presentation allows us to interact with the Dia's 
+  channels and settings. Once the Dia connection is established, the following 
+  welcome message and prompt are presented:
+
+  Welcome to the iDigi Device Integration Application CLI.
+  =>>
+ 
+  Type 'help' at the command prompt in order to see what commands can be 
+  executed. Typing 'help' followed by the name of a command will give us 
+  additional information on that command.
+  
+  The 'channel_set' command sets the value for the given channel: 
+  
+  =>> channel_set translator0.InputString "Hello"
+  
+  The 'channel_dump' command dumps the value of all channels:
+  
+  =>> channel_dump
+
+   Device instance: translator0
+
+   Channel                  Value              Unit     Timestamp          
+   ------------------------ ------------------ -------- -------------------
+   InputString              Hello                       1955-05-16 20:52:16
+   OutputString             Hola                        1955-05-16 20:52:16
+  
+  </demo_run>
+  <type>com.digi.dpdev.project.dia</type>
+  <data_path>data</data_path>
+  <id>dia_translator</id>
+  <mainFile>dia_translator.yml</mainFile>
+  <sampleFiles></sampleFiles>
+  <sourceFolder></sourceFolder>
+  <icon></icon>
+  <platforms>
+    <platform>ConnectPort X2</platform>
+    <platform>ConnectPort X2B</platform>
+    <platform>ConnectPort X2D</platform>
+    <platform>ConnectPort X2e ZB</platform>
+    <platform>ConnectPort X2e Wi-Fi ZB</platform>
+    <platform>ConnectPort X2 SE</platform>
+    <platform>ConnectPort X3</platform>
+    <platform>ConnectPort X4</platform>
+    <platform>ConnectPort X4 H</platform>
+    <platform>ConnectPort X4 IA</platform>
+    <platform>ConnectPort X4 NEMA</platform>
+    <platform>ConnectPort X4 4G</platform>
+    <platform>ConnectPort X5</platform>
+    <platform>ConnectPort X5 F ZB GPRS</platform>
+    <platform>ConnectPort X5 F ZB Wifi GPRS</platform>
+    <platform>ConnectPort X5 R ZB GPRS</platform>
+    <platform>ConnectPort X5 R ZB Wifi GPRS</platform>
+    <platform>ConnectPort X5 R ZB Wifi CDMA</platform>
+    <platform>ConnectPort X5 R Wifi GPRS Iridium</platform>
+    <platform>ConnectPort X8</platform>
+    <platform>Embedded Gateway</platform>
+    <platform>ConnectCore 3G 9P 9215</platform>
+    <platform>ConnectPort WAN Wi</platform>
+    <platform>ConnectPort WAN VPN</platform>
+    <platform>ConnectPort WAN GPS</platform>
+    <platform>Connect WAN 3G IA</platform>
+    <platform>Digi Connect SP Python</platform>
+    <platform>Digi Connect Wi-SP Python</platform>
+  </platforms>
+  <tested_on>
+  ConnectPort X4
+  ConnectPort X3
+  </tested_on>
+</project>

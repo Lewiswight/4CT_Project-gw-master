@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+ <project label="Autoenum sample" visible="true">
+  <description>&lt;p&gt;An iDigi Dia project sample that shows how to have Dia discover and automatically set up various 
+XBee adapters and devices based on their type.&lt;/p&gt;</description>
+  <type>com.digi.dpdev.project.dia</type>
+  <data_path>data</data_path>
+  <id>autoenum_sample</id>
+  <mainFile>autoenum_sample.yml</mainFile>
+  <sampleFiles></sampleFiles>
+  <sourceFolder></sourceFolder>
+  <icon></icon>
+  <platforms>
+    <platform>ConnectPort X2e ZB</platform>
+    <platform>ConnectPort X2e Wi-Fi ZB</platform>
+    <platform>ConnectPort X4</platform>
+    <platform>ConnectPort X4 H</platform>
+    <platform>ConnectPort X4 IA</platform>
+    <platform>ConnectPort X4 NEMA</platform>
+    <platform>ConnectPort X4 4G</platform>
+    <platform>ConnectPort X5</platform>
+    <platform>ConnectPort X5 F ZB GPRS</platform>
+    <platform>ConnectPort X5 F ZB Wifi GPRS</platform>
+    <platform>ConnectPort X5 R ZB GPRS</platform>
+    <platform>ConnectPort X5 R ZB Wifi GPRS</platform>
+    <platform>ConnectPort X5 R ZB Wifi CDMA</platform>
+    <platform>ConnectPort X8</platform>
+    <platform>Embedded Gateway</platform>
+    <platform>ConnectCore 3G 9P 9215</platform>
+  </platforms>
+</project>

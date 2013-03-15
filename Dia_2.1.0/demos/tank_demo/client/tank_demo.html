@@ -1,0 +1,105 @@
+<html>
+    <head>
+        <title>Digi DIA Tank Monitoring Demo</title>
+        <script type="text/javascript" src="FusionCharts.js"></script>
+    </head>
+
+    <body>
+        <table width='800px'>
+            <tr>
+                <td colspan='2'>
+                    <h3>Left Tank</h3>
+                </td>
+
+                <td colspan='2'>
+                    <h3>Right Tank</h3>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan='2'>
+                    <div id="left_tank">.</div>
+                </td>
+
+                <script type="text/javascript">
+                    var left_tank_chart = new FusionCharts(
+                                                "Cylinder.swf",
+                                                "tank_left_chart",
+                                                "200", "300", "0", "0");
+                    left_tank_chart.setDataURL("tank_left_cylinder.xml");
+                    left_tank_chart.render("left_tank");
+                </script>
+
+                <td colspan='2'>
+                    <div id="right_tank">.</div>
+                </td>
+
+                <script type="text/javascript">
+                    var right_tank_chart = new FusionCharts(
+                                                "Cylinder.swf",
+                                                "tank_right_chart",
+                                                "200", "300", "0", "0");
+                    right_tank_chart.setDataURL("tank_right_cylinder.xml");
+                    right_tank_chart.render("right_tank");
+                </script>
+            </tr>
+
+            <tr>
+                <td>
+                    <div id="left_pump_status">.</div>
+                </td>
+
+                <script type="text/javascript">
+                    var left_pump_bulb = new FusionCharts(
+                                                "Bulb.swf",
+                                                "pump_left_bulb",
+                                                "100", "100", "0", "0");
+                    left_pump_bulb.setDataURL("pump_left_bulb.xml");
+                    left_pump_bulb.render("left_pump_status");
+                </script>
+
+                <td>
+                    <div style='vertical-align: top' id="left_pump_work">.</div>
+                </td>
+
+                <script type="text/javascript">
+                    var left_pump_gauge = new FusionCharts(
+                                                "AngularGauge.swf",
+                                                "pump_left_gauge",
+                                                "200", "128", "0", "0");
+                    left_pump_gauge.setDataURL("pump_left_gauge.xml");
+                    left_pump_gauge.render("left_pump_work");
+                </script>
+
+                <td>
+                    <div id="right_pump_status">.</div>
+                </td>
+
+                <script type="text/javascript">
+                    var right_pump_chart = new FusionCharts(
+                                                "Bulb.swf",
+                                                "pump_right_chart",
+                                                "100", "100", "0", "0");
+                    right_pump_chart.setDataURL("pump_right_bulb.xml");
+                    right_pump_chart.render("right_pump_status");
+                </script>
+
+                <td>
+                    <div style='vertical-align: top' id="right_pump_work">.</div>
+                </td>
+
+                <script type="text/javascript">
+                    var right_pump_gauge = new FusionCharts(
+                                                "AngularGauge.swf",
+                                                "pump_right_gauge",
+                                                "200", "128", "0", "0");
+                    right_pump_gauge.setDataURL("pump_right_gauge.xml");
+                    right_pump_gauge.render("right_pump_work");
+                </script>
+
+            </tr>
+
+        </table>
+
+    </body>
+</html>

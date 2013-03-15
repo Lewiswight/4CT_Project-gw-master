@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="com.digi.dpdev.debug.DigiPythonAppLaunchConfiguration">
+<stringAttribute key="com.digi.dpdev.debug.ATTR_PROJECT" value="g"/>
+<intAttribute key="com.digi.dpdev.debug.ATTR_STOP_AT_MAIN" value="2"/>
+<stringAttribute key="com.digi.dpdev.debug.ATTR_TOOL_ARGUMENTS" value=""/>
+<booleanAttribute key="com.digi.dpdev.debug.ATTR_UPLOAD_RESOURCES" value="true"/>
+</launchConfiguration>

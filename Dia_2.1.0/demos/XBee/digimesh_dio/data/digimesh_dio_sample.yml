@@ -1,0 +1,44 @@
+devices:
+
+    #
+    # In a DigiMesh network, all devices sleep and wake together.
+    #
+    # The sleep_time and wake_time are measured in milliseconds.
+    #
+  - name: digimesh_device_manager
+    driver: devices.xbee.xbee_device_manager.digimesh_device_manager:DigiMeshDeviceManager
+    settings:
+        sleep_time: 4000
+        wake_time: 4000    
+
+    #
+    # XBee drivers can be used with both DigiMesh and ZigBee network managers.
+    # 
+    # But there a few differences:
+    # * The sleep settings specified in the XBee driver are ignored
+    #   when the DigiMesh manager is used, because the DigiMesh
+    #   manager's sleep_time and wake_time are used instead.
+    # 
+    # * The sample rate only applies while the device is awake.
+    #
+    # In this configuration, the DIO will send 30 samples a minute (once per second
+    # during the awake period and none during the sleep period).
+    #
+  - name: dio
+    driver: devices.xbee.xbee_devices.xbee_dio:XBeeDIO
+    settings:
+        xbee_device_manager: digimesh_device_manager
+        extended_address: "00:13:a2:00:40:0a:12:ab!"
+        sample_rate_ms: 1000
+        power: "On"
+        channel1_dir: "In"
+        channel2_dir: "In"
+        channel3_dir: "In"
+        channel4_dir: "In"
+
+presentations:        
+  - name: console0
+    driver: presentations.console.console:Console
+    settings:
+        type: tcp
+        port: 4146

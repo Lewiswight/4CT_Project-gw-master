@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+ <project label="DigiMesh DIO sample" visible="true">
+  <description>&lt;p&gt; This iDigi Dia project sample demonstrates a simple DigiMesh network configuration with a DIO.&lt;/p&gt;</description>
+  <type>com.digi.dpdev.project.dia</type>
+  <data_path>data</data_path>
+  <id>digimesh_dio_sample</id>
+  <mainFile>digimesh_dio_sample.yml</mainFile>
+  <sampleFiles></sampleFiles>
+  <sourceFolder></sourceFolder>
+  <icon></icon>
+  <platforms>
+    <platform>ConnectPort X4</platform>
+    <platform>ConnectPort X4 H</platform>
+    <platform>ConnectPort X4 IA</platform>
+    <platform>ConnectPort X4 NEMA</platform>
+    <platform>ConnectPort X4 4G</platform>
+    <platform>ConnectPort X5</platform>
+    <platform>ConnectPort X5 F ZB GPRS</platform>
+    <platform>ConnectPort X5 F ZB Wifi GPRS</platform>
+    <platform>ConnectPort X5 R ZB GPRS</platform>
+    <platform>ConnectPort X5 R ZB Wifi GPRS</platform>
+    <platform>ConnectPort X5 R ZB Wifi CDMA</platform>
+    <platform>ConnectPort X8</platform>
+  </platforms>
+</project>

@@ -1,0 +1,13 @@
+(dp1
+S'lion'
+p2
+S'yellow'
+p3
+sS'kitty'
+p4
+S'red'
+p5
+s.I27
+.S'cool'
+p1
+.

@@ -1,0 +1,54 @@
+# Example showing how the iDigi Iridium Short Messaging Service might be used.
+
+
+devices:
+
+  # For Devices, declare the Template Device, which is a generic
+  # driver that can increase its counter at a specified rate.
+  - name: template
+    driver: devices.template_device:TemplateDevice
+    settings:
+        count_init: 0
+        update_rate: 1.0
+
+
+presentations:
+
+  # For Presentations, declare the Short Messaging Presentation.
+  - name: iridium
+    driver: presentations.short_messaging.short_messaging:ShortMessaging
+    settings:
+        # Declare the iDigi Iridium transport, and some of its options.
+        Iridium:
+            settings:
+                limit: 5
+                limit_interval: hour
+        clients:
+            # Declare the iDigi Client, which will use the Iridium Transport
+            # declared in the transports section.
+          - name: iDigi_Client
+            settings:
+                enabled: True
+                transport: Iridium
+                type: iDigi
+        updates:
+            # Declare an Update.
+            # Updates will be sent about each channel that matches the
+            # specified filter, to each listed client at the specified
+            # interval.
+          - name: Update_Counter
+            settings:
+                filter: "template*counter"
+                clients: [ iDigi_Client ]
+                interval: 10
+        alarms:
+            # Declare an Alarm.
+            # An Alarm will be sent about each channel that matches the
+            # specified filter, to each listed client, when that channel's
+            # value evaluates to a True based on the condition expression
+            # given.
+          - name: Alarm_Counter_30
+            settings:
+                filter: "template*counter"
+                clients: [ iDigi_Client ]
+                condition: "%c == 100"

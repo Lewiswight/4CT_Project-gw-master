@@ -1,0 +1,14 @@
+<chart lowerLimit='0' upperLimit='100' gaugeStartAngle='180' gaugeEndAngle='0'
+       palette='1' numberSuffix=' W' showValue='1' bgColor='FFFFFF'
+       dataStreamURL='/fusionwidgets/get/tank_status.left_pump_work'
+       refreshInterval='3'>
+    <colorRange>
+        <color minValue='0' maxValue='33' code='8BBA00' />
+        <color minValue='33' maxValue='66' code='F6BD0F' />
+        <color minValue='66' maxValue='100' code='FF654F' />
+    </colorRange>
+    <dials>
+        <dial value='0' rearExtension='10' />
+    </dials>
+</chart>
+

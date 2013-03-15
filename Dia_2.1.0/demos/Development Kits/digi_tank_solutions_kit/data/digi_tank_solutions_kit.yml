@@ -1,0 +1,48 @@
+devices: 
+  - name: xbee_device_manager
+    driver: devices.xbee.xbee_device_manager.xbee_device_manager:XBeeDeviceManager
+
+  - name: xbib0
+    driver: devices.xbee.xbee_devices.xbee_xbib:XBeeXBIB
+    settings: 
+        xbee_device_manager: "xbee_device_manager"
+        extended_address: ""
+        sleep_ms: 400
+
+  - name: tank_sensor0
+    driver: custom_devices.xtank_sensor:XTankSensor
+    settings: 
+        xbee_device_manager: "xbee_device_manager"
+        extended_address: ""
+        sample_rate_sec: 5
+        sleep_rate_sec: 10
+
+  - name: tank0
+    driver: devices.tanks.tank:Tank
+    settings: 
+        tank_sensor_device: "tank_sensor0"
+        input_valve_channel: "xbib0.led1"
+        output_valve_channel: "xbib0.led2"
+        tank_height: 2.0
+
+  - name: tank_v0
+    driver: devices.tanks.virtual_tank:VirtualTank
+    settings: 
+        volume: 5000
+
+  - name: tank_v1
+    driver: devices.tanks.virtual_tank:VirtualTank
+    settings: 
+        volume: 5000
+
+presentations: 
+  - name: rci
+    driver: presentations.rci.rci_handler:RCIHandler
+
+  - name: console0
+    driver: presentations.console.console:Console
+
+  - name: digi_tank_kit0
+    driver: custom_presentations.tank_kit_presentation:TankKitPresentation
+    settings: 
+        xbib_board: "xbib0"

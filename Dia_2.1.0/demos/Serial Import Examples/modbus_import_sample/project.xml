@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+ <project label="Modbus Import Example" visible="true">
+  <description>
+&lt;p&gt;It polls a serial device for 1 data value, which is converted to a Dia data
+channel. It issues a single fixed request, and expects a single dynamic
+response. In this sample, the serial protocol used is Modbus/RTU, however the
+user should be able to easily implement a new protocol of their choosing.&lt;/p&gt;
+
+&lt;p&gt;It assumes:&lt;/p&gt;
+&lt;li&gt;you attach a Modbus/RTU serial slave to the serial port of the Digi product.&lt;/li&gt;
+&lt;li&gt;that the Modbus/RTU slave address is 1.&lt;/li&gt;
+&lt;li&gt;that the Modbus/RTU device supports holding register 4x00001.&lt;/li&gt;
+&lt;li&gt;RS-232 or RS-485 must be set correctly in the Digi product&lt;/li&gt;
+&lt;li&gt;the serial profile of the Digi product should be set to TCP Sockets&lt;/li&gt;
+  
+&lt;p&gt;This example configures the channel 2 and 3 of the device (first and second digital channels)
+    to be outputs alternating a high and low value on them each second.&lt;/p&gt;</description>
+  <type>com.digi.dpdev.project.dia</type>
+  <data_path>data</data_path>
+  <id>modbus_import_sample</id>
+  <mainFile>modbus_import_sample.yml</mainFile>
+  <sampleFiles></sampleFiles>
+  <sourceFolder>dia_extensions</sourceFolder>
+  <icon></icon>
+  <platforms>
+    <platform>ConnectPort X3</platform>
+    <platform>ConnectPort X3R</platform>
+    <platform>ConnectPort X4</platform>
+    <platform>ConnectPort X4 IA</platform>
+    <platform>ConnectPort X4 4G</platform>
+    <platform>ConnectPort X5</platform>
+    <platform>ConnectPort X5 F ZB GPRS</platform>
+    <platform>ConnectPort X5 F ZB Wifi GPRS</platform>
+    <platform>ConnectPort X5 R ZB GPRS</platform>
+    <platform>ConnectPort X5 R ZB Wifi GPRS</platform>
+    <platform>ConnectPort X5 R ZB Wifi CDMA</platform>
+    <platform>ConnectPort X5 R Wifi GPRS Iridium</platform>
+    <platform>Digi Connect SP Python</platform>
+    <platform>Digi Connect Wi-SP Python</platform>
+    <platform>ConnectPort X8</platform>
+    <platform>Embedded Gateway</platform>
+    <platform>ConnectCore 3G 9P 9215</platform>
+  </platforms>
+</project>

@@ -1,0 +1,62 @@
+ 1  The flow of a request starts as a new thread creating an instance of
+    BaseHTTPRequestHandler to handle it.
+
+    ====
+    [HTTP Request] -> (start.py)BaseHTTPRequestHandler
+    ====
+    
+    The BaseHTTPRequestHandler will then parse the request.  For anything but 
+    a request to a .py file it will open the file with the same name based 
+    in the web_content directory.  i.e
+    
+    ====
+    GET /index.html
+    
+    will get read the contents of ./web_content/index.html.
+    
+    GET /images/back.png
+    
+    will send the back.png image from ./web_content/images/back.png
+    ====
+    
+    If a .py file is requested it will be split into two phases.  The controller
+    will handle the request and a pyhtml file within the web_content directory will
+    render it.  i.e
+    
+    ====
+    GET /hello_world.py
+    
+    First the controller located in ./web_content/hello_world.py will be run.  Then
+    all declared variables from the controller will be available in the view rendered
+    from ./web_content/hello_world.pyhtml
+    
+    [hello_world.py] = """
+    message = "hello world"
+    """
+    
+    [hello_world.pyhtml] = """
+    <html>
+    <head></head>
+    <body>
+     <h1> <%= message %> </h1>
+    </body>
+    </html>
+    """
+    ====
+
+ 2  pyhtml rendering
+ 
+    examples:
+    
+       1 <% for i in range(10): %>
+       2    <%= i %>*<%= i %> : <b> <%= i*i %> </b>
+       3 <% end %>
+       4 <h3>done</h3>
+       
+       
+       1 <% os %>
+       2 Current Directory <%= os.getcwd() %>
+   
+    modified from Pierre Quentel's karrigell PythonInsideHTML templating system http://karrigell.sourceforge.net/en/pythoninsidehtml.htm
+    seen in ./libs/PythonInsideHTML.py
+   

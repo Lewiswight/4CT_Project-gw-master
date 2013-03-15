@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+ <project label="ConnectPort X3 Getting Started" visible="true">
+  <description>&lt;p&gt;iDigi Dia project sample designed for the ConnectPort X3 Family.&lt;/p&gt;
+  
+  &lt;p&gt;This project shows an example of an iDigi Dia framework containing two virtual 
+  devices. One of them increments a counter channel every second, and the other, 
+  multiplies it by 2.&lt;/p&gt;
+  
+  &lt;p&gt;The iDigi DB presentation reads the value of both channels and sends a file 
+  with this information to iDigi every 10 seconds. The files are named 
+  'couter_samples0.xml -> couter_samples9.xml' (and overwritten as needed) so no more 
+  than 10 files are stored on iDigi.&lt;/p&gt;
+  
+  &lt;p&gt;The RCI presentation allows a remote access to the channels information.&lt;/p&gt;
+  </description>
+  <demo_requirements>
+  To run this example you will need:
+    * A ConnectPort X3 device to host the application.
+    * An iDigi account.
+    
+  This example requires the Device Manager's Connection Mode = Local Area Network/USB/Serial 
+  (set under the Device Manager’s General Tab).
+  </demo_requirements>
+  <demo_setup>
+  1) Make sure the hardware is set up correctly:
+       a) The Digi device is powered on.
+       b) The Digi device is connected directly to the PC by the corresponding 
+          USB or serial cable.
+  2) Make sure the device is added to your iDigi inventory.
+  </demo_setup>
+  <demo_run>
+  The example is already configured, so all you need to do is to build and 
+  launch the project.
+  
+  While the application is running, the value of the 'counter' channel 
+  ('template_device.counter') will be incremented every second. The value 
+  of 'count_by_two' channel ('transform_device.count_by_two') will be also 
+  recalculated multiplying the 'counter' value by 2.
+  
+  The Digi device will send to the iDigi server the value of both channels 
+  every 10 seconds.
+  
+  To verify that the xml files are being uploaded to iDigi successfully, 
+  follow these steps:
+     1) Press the "iDigiME" button of the toolbar to access to your iDigi 
+       account.
+    2) Once there, go to the "Storage" section from the left menu.
+    3) Open the storage folder corresponding with your Device ID.
+    4) You should be able to see a folder called "x3_counter". Open it and 
+       verify it contains the xml files sent by the application. They should 
+       have the following name:
+           couter_samples[n].txt - Where [n] is the index of the file.
+    5) You can open any of the files to see the channel values they contain.
+  </demo_run>
+  <type>com.digi.dpdev.project.dia</type>
+  <data_path>data</data_path>
+  <id>x3_getting_started</id>
+  <mainFile>x3_getting_started.yml</mainFile>
+  <sampleFiles></sampleFiles>
+  <sourceFolder></sourceFolder>
+  <icon></icon>
+  <platforms>
+    <platform>ConnectPort X3</platform>
+  </platforms>
+  <tested_on>
+  ConnectPort X3
+  </tested_on>
+</project>

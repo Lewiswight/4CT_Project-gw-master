@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="platform">
+	<item value="All" key="platform"/>
+	<item value="false" key="filterByPlatform"/>
+</section>

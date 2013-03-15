@@ -1,0 +1,101 @@
+
+## Configuration file for generic XBee string messages.
+
+
+## Usage**
+#  ====================================================================
+#
+#  1. Create bin/dia.zip by changing to the installation directory for
+#     Dia, and typing on the command line
+#
+#        python make.py demos/rabbit/simple_chat/simple_chat.yml
+#
+#     You will need to have a version of Python 2.4.3 installed
+#     (http://www.python.org/download/releases/2.4.3/).
+#
+#  2. Upload bin/dia.zip, demos/rabbit/simple_chat/simple_chat.yml, and
+#     dia.py (if not already uploaded) to the ConnectPort (under
+#     the "Applications > Python" link in the left-side menu of the
+#     ConnectPort's web page).
+#
+#  3. Compile and run the Dynamic C sample
+#     Samples\iDigi\BL4S100\simple_chat.c on your BL4S100.
+#     This demo also works with the file simple_strings.c, in the same
+#     directory.
+#
+#  4. Run this demo on the ConnectPort (telnet: python dia.py gpio.yml)
+#
+# **  More detailed instructions are given in the Dynamic C sample files.
+#
+# About this demo:
+#
+#   The XBeeString driver creates two channels.  The `local' channel is
+#   settable, and sends its value (a string) to the remote device.  The
+#   `remote' channel is gettable, and is updated when the remote device
+#   sends a string.
+#
+
+
+devices:
+
+  # Instantiate an XBee Device Manager instance.
+  # 
+  # A single instance of the XBee Device Manager is required when using any
+  # XBee device drivers on the Dia.  The XBee Device Manager is responsible
+  # for multiplexing data communications and managing node configurations.
+  #
+  - name: xbee_device_manager
+    driver: devices.xbee.xbee_device_manager.xbee_device_manager:XBeeDeviceManager
+
+  # Instantiate the XBeeString instance
+  #
+  # The XBeeString requires an xbee_device_manager to send and receive
+  # ZigBee messages.
+  #
+  # The extended_address is the hardware address of the device.  The
+  # endpoint, profile, and cluster settings are necessary to tell the
+  # local device how to receive from and send to the remote device.
+  #
+  # The local and remote settings rename those channels to something more
+  # user-friendly.
+  - name: chat
+    driver: devices.rabbit.xbee_string:XBeeString
+    settings:
+        # Note: the xbee_device_manager setting is being set to
+        # "xbee_device_manager", which is the name of the instance of the
+        # XBeeDeviceManager, above.
+        xbee_device_manager: "xbee_device_manager"
+        # Change the below extended_address setting to match the 64-bit
+        # hardware address of the radio installed in your development
+        # board:
+        extended_address: "00:13:a2:00:40:0a:00:c0!"
+
+        # Required: endpoint, profile, and cluster of local and remote device
+        endpoint: 2
+        profile: 42
+        cluster: 7
+
+        # Optional channel names for local and remote channels.  Defaults
+        # to "local" and "remote"
+        local: "X4"
+        remote: "BL4S100"
+
+
+presentations:
+  # The standard Dia command-line console
+  - name: console0
+    driver: presentations.console.console:Console
+    settings:
+        type: tcp
+        port: 4146
+
+  # Use the web presentation that auto-updates the displayed
+  # values every 'polling' seconds.  If polling is 0, no auto-update
+  # occurs.  
+  - name: web0
+    driver: presentations.web.web:Web
+    settings:
+        page: idigi_dia.html
+        polling: 1
+        title: "BL4S100 / ConnectPort X4 Chat/Strings Demo"
+

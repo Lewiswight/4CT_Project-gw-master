@@ -1,0 +1,11 @@
+<chart upperLimit='1' lowerLimit='0' useColorNameAsValue='1'
+       bgColor='FFFFFF'
+       dataStreamURL='/fusionwidgets/get/tank_control.right_pump_on'
+       refreshInterval='3'>
+    <colorRange>
+        <color minValue='0' maxValue='0' label='Off' code='337733' alpha='75'/>
+        <color minValue='1' maxValue='1' label='On' code='00FF00' />
+    </colorRange>
+    <value>0</value>
+</chart>
+

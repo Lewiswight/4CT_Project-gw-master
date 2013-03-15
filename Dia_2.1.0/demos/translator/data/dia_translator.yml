@@ -1,0 +1,38 @@
+# iDigi Dia sample that implements a custom driver and presentation.
+
+# The driver (Translator) creates 2 channels (InputString and 
+# OutputString) to translate words from English to Spanish or from 
+# Spanish to English, depending on the 'EnglishToSpanish' setting value.
+
+# The presentation (CViewer) Prints out all the channels from the 
+# given channel list and their values each configured "update_rate" 
+# time (in seconds).
+
+devices: 
+  - name: translator0
+    driver: custom_devices.translator:Translator
+
+presentations: 
+  - name: rci
+    driver: presentations.rci.rci_handler:RCIHandler
+    settings: 
+        target_name: "idigi_dia"
+
+  - name: console0
+    driver: presentations.console.console:Console
+
+# CViewer settings:
+# channels:     The list of channels that will be printed
+# update_rate:  (Optional) The number of seconds between each update, 
+#               5 by default
+  - name: viewer0
+    driver: custom_presentations.channel_viewer:CViewer
+    settings: 
+        channels: 
+          - translator0.InputString
+          - translator0.OutputString
+
+  - name: web0
+    driver: presentations.web.web:Web
+    settings: 
+        page: "dia.html"

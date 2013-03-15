@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workbench version="2.0">
+<workbenchAdvisor/>
+<window height="728" maximized="true" width="1024" x="150" y="0">
+<fastViewData fastViewLocation="1024">
+<orientation position="512" view="org.eclipse.ui.views.ResourceNavigator"/>
+</fastViewData>
+<perspectiveBar>
+<itemSize x="160"/>
+</perspectiveBar>
+<coolbarLayout>
+<coolItem id="group.file" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="122" y="22"/>
+<coolItem id="additions" itemType="typeGroupMarker"/>
+<coolItem id="com.digi.dpdev.ui.actionSet.DPDevElementCreationActionSet" itemType="typeToolBarContribution" x="152" y="22"/>
+<coolItem id="com.digi.dpdev.ui.actionSet.DPDevTargetActionSet" itemType="typeToolBarContribution" x="53" y="22"/>
+<coolItem id="com.digi.dpdev.ui.actionSet.DigiPythonViews" itemType="typeToolBarContribution" x="61" y="22"/>
+<coolItem id="com.digi.dpdev.ui.actionSet.iDigiConnection" itemType="typeToolBarContribution" x="38" y="22"/>
+<coolItem id="com.digi.workbench.remoteConfiguration.actionSet" itemType="typeToolBarContribution" x="38" y="22"/>
+<coolItem id="com.python.pydev.navigate.actionSet" itemType="typeToolBarContribution" x="38" y="22"/>
+<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="129" y="22"/>
+<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="53" y="22"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="61" y="22"/>
+<coolItem id="updatemanager.actionSet" itemType="typeToolBarContribution" x="61" y="22"/>
+<coolItem id="group.nav" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="190" y="22"/>
+<coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="org.python.pydev.editor.PythonEditor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="com.digi.dpdev.ui.editors.YMLSmartEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="group.help" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
+</coolbarLayout>
+<page aggregateWorkingSetId="Aggregate for window 1320259553436" focus="true" label="Workspace - DigiPython">
+<editors>
+<editorArea activeWorkbook="DefaultEditorWorkbook">
+<info part="DefaultEditorWorkbook">
+<folder appearance="1" expanded="2">
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+</editorArea>
+<editor activePart="true" focus="true" id="com.digi.dpdev.ui.editors.YMLSmartEditor" name="HouseLynx1.yml" partName="HouseLynx1.yml" title="HouseLynx1.yml" tooltip="C:\Users\Lewis\Desktop\HouseLynx_A\HouseLynx1.yml" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" uri="file:/C:/Users/Lewis/Desktop/HouseLynx_A/HouseLynx1.yml"/>
+</editor>
+</editors>
+<views>
+<view id="org.eclipse.ui.views.PropertySheet" partName="Properties"/>
+<view id="org.eclipse.ui.views.ResourceNavigator" partName="Navigator">
+<viewState LINK_NAVIGATOR_TO_EDITOR="0" sorter="1">
+<filters>&#x0A;<filter element=".*" isEnabled="false"/>
+<filter element="*.pyc" isEnabled="true"/>
+<filter element="*.class" isEnabled="true"/>
+<filter element="*.pyo" isEnabled="true"/>
+</filters>
+<selection>&#x0A;<element path="/HouseLynx_A"/>
+</selection>
+</viewState>
+</view>
+<view id="org.eclipse.tm.terminal.view.TerminalView" partName="Terminal 1">
+<viewState Title="Terminal 1" _keys_="Title,connectionManageractive,connectionManagerconnection0HasCommandInputField,connectionManagerconnection0PartName,connectionManagerconnection0org.eclipse.tm.internal.terminal.telnet.TelnetConnector.NetworkPort,connectionManagerconnection0org.eclipse.tm.internal.terminal.telnet.TelnetConnector.Timeout,connectionManagersize" connectionManageractive="connection0" connectionManagerconnection0HasCommandInputField="false" connectionManagerconnection0PartName="Terminal 1" connectionManagersize="1">
+<connectionManagerconnection0org>
+<eclipse>
+<tm>
+<internal>
+<terminal>
+<telnet>
+<TelnetConnector NetworkPort="23" Timeout="10"/>
+</telnet>
+</terminal>
+</internal>
+</tm>
+</eclipse>
+</connectionManagerconnection0org>
+</viewState>
+</view>
+<view id="org.eclipse.ui.views.ProblemView" partName="Problems">
+<viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
+<columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="300"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.locationField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.markerType"/>
+</viewState>
+</view>
+<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
+<viewState/>
+</view>
+<view id="org.eclipse.ui.views.TaskList" partName="Tasks"/>
+<view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
+<viewState/>
+</view>
+</views>
+<perspectives activePart="com.digi.dpdev.ui.editors.YMLSmartEditor" activePerspective="com.digi.dpdev.ui.perspectives.dpdevPerspective">
+<perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
+<descriptor class="com.digi.dpdev.ui.perspective.DpDevPerspective" id="com.digi.dpdev.ui.perspectives.dpdevPerspective" label="DigiPython"/>
+<alwaysOnActionSet id="updatemanager.actionSet"/>
+<alwaysOnActionSet id="com.digi.dpdev.ui.actionSet.iDigiConnection"/>
+<alwaysOnActionSet id="com.digi.workbench.remoteConfiguration.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
+<alwaysOnActionSet id="org.eclipse.ui.NavigateActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.launchActionSet"/>
+<alwaysOnActionSet id="com.digi.dpdev.ui.actionSet.DPDevElementCreationActionSet"/>
+<alwaysOnActionSet id="com.digi.dpdev.ui.actionSet.DPDevTargetActionSet"/>
+<alwaysOnActionSet id="com.digi.dpdev.ui.actionSet.DigiPythonViews"/>
+<alwaysOnActionSet id="com.python.pydev.navigate.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<show_view_action id="org.eclipse.ui.views.ContentOutline"/>
+<show_view_action id="org.eclipse.ui.views.ProblemView"/>
+<show_view_action id="org.eclipse.ui.views.PropertySheet"/>
+<show_view_action id="org.eclipse.search.ui.views.SearchView"/>
+<show_view_action id="org.eclipse.ui.console.ConsoleView"/>
+<show_view_action id="org.eclipse.ui.views.ResourceNavigator"/>
+<show_view_action id="org.eclipse.ui.views.TaskList"/>
+<show_view_action id="org.eclipse.tm.terminal.view.TerminalView"/>
+<show_view_action id="org.python.pydev.navigator.view"/>
+<show_view_action id="com.digi.dpdev.ui.views.fileexplorerview"/>
+<show_view_action id="com.digi.dpdev.ui.views.channelsviewer"/>
+<new_wizard_action id="com.digi.dpdev.build.wizards.DpDevPythonProject"/>
+<new_wizard_action id="com.digi.dpdev.build.wizards.Package"/>
+<new_wizard_action id="com.digi.dpdev.build.wizards.Module"/>
+<new_wizard_action id="com.digi.dpdev.build.wizards.SourceFolder"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.folder"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.file"/>
+<new_wizard_action id="org.eclipse.ui.editors.wizards.UntitledTextFileWizard"/>
+<new_wizard_action id="com.digi.dpdev.build.wizards.DPDEVPythonSamplesWizard"/>
+<new_wizard_action id="com.digi.dpdev.build.wizards.DPDEVDiaSamplesWizard"/>
+<new_wizard_action id="com.digi.dpdev.build.wizards.DpDevDIAProject"/>
+<perspective_action id="com.digi.dpdev.debug.remoteDebuggingPerspective"/>
+<hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
+<view id="org.eclipse.ui.views.ContentOutline"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
+<view id="org.eclipse.ui.views.PropertySheet"/>
+<view id="org.eclipse.ui.views.ProblemView"/>
+<view id="org.eclipse.ui.views.TaskList"/>
+<view id="org.eclipse.tm.terminal.view.TerminalView"/>
+<fastViews>
+<view id="org.eclipse.ui.views.ResourceNavigator" ratio="0.14544025"/>
+</fastViews>
+<fastViewBars/>
+<layout>
+<mainWindow>
+<info folder="true" part="topLeft">
+<folder appearance="2" expanded="2">
+<page content="org.python.pydev.navigator.view" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@1a99836" ratio="0.75" ratioLeft="750" ratioRight="250" relationship="2" relative="topLeft">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
+<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" ratio="0.2" ratioLeft="200" ratioRight="800" relationship="2" relative="topLeft"/>
+<info folder="true" part="topRight" ratio="0.8" ratioLeft="640" ratioRight="160" relationship="2" relative="org.eclipse.ui.editorss">
+<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
+<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@1ad5296" ratio="0.7496183" ratioLeft="491" ratioRight="164" relationship="4" relative="org.eclipse.ui.editorss">
+<folder activePageID="org.eclipse.tm.terminal.view.TerminalView" appearance="2" expanded="2">
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<page content="org.eclipse.ui.views.PropertySheet" label="Properties"/>
+<page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
+<page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
+<page content="org.eclipse.tm.terminal.view.TerminalView" label="Terminal 1"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
+</presentation>
+</folder>
+</info>
+<info part="com.digi.dpdev.ui.views.fileexplorerview" ratio="0.6490939" ratioLeft="394" ratioRight="213" relationship="4" relative="topLeft"/>
+</mainWindow>
+</layout>
+</perspective>
+</perspectives>
+<workingSets/>
+<navigationHistory>
+<editors>
+<editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="com.digi.dpdev.ui.editors.YMLSmartEditor" uri="file:/C:/Users/Lewis/Desktop/HouseLynx_A/HouseLynx1.yml"/>
+</editors>
+<item active="true" historyLabel="HouseLynx1.yml" index="0"/>
+</navigationHistory>
+<input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
+</page>
+<workbenchWindowAdvisor/>
+<actionBarAdvisor/>
+<trimLayout>
+<trimArea IMemento.internal.id="128">
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
+</trimArea>
+<trimArea IMemento.internal.id="1024">
+<trimItem IMemento.internal.id="org.eclise.ui.internal.FastViewBar"/>
+<trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
+</trimArea>
+</trimLayout>
+</window>
+<mruList>
+<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="com.digi.dpdev.ui.editors.YMLSmartEditor" name="HouseLynx1.yml" tooltip="C:\Users\Lewis\Desktop\HouseLynx_A\HouseLynx1.yml">
+<persistable uri="file:/C:/Users/Lewis/Desktop/HouseLynx_A/HouseLynx1.yml"/>
+</file>
+<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name=".project" tooltip="C:\Users\Lewis\Desktop\HouseLynx_A\.project">
+<persistable uri="file:/C:/Users/Lewis/Desktop/HouseLynx_A/.project"/>
+</file>
+<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name=".project" tooltip="C:\Users\Lewis\Desktop\.project">
+<persistable uri="file:/C:/Users/Lewis/Desktop/.project"/>
+</file>
+<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.python.pydev.editor.PythonEditor" name="idigi_db3.py" tooltip="C:\Users\Lewis\Dropbox\Dia releases\idigiPROJECTS\green_kit\custom_presentations\presentations\idigi_db\idigi_db3.py">
+<persistable uri="file:/C:/Users/Lewis/Dropbox/Dia%20releases/idigiPROJECTS/green_kit/custom_presentations/presentations/idigi_db/idigi_db3.py"/>
+</file>
+<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name=".pydevproject" tooltip="C:\Users\Lewis\Dropbox\Dia releases\idigiPROJECTS\green_kit\.pydevproject">
+<persistable uri="file:/C:/Users/Lewis/Dropbox/Dia%20releases/idigiPROJECTS/green_kit/.pydevproject"/>
+</file>
+<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="com.digi.dpdev.ui.editors.YMLSmartEditor" name="green_getting_started.yml" tooltip="C:\Users\LewisWight\Dropbox\Dia releases\idigiPROJECTS\green_kit\green_getting_started.yml">
+<persistable uri="file:/C:/Users/LewisWight/Dropbox/Dia%20releases/idigiPROJECTS/green_kit/green_getting_started.yml"/>
+</file>
+</mruList>
+</workbench>

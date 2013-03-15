@@ -1,0 +1,12 @@
+devices: 
+  - name: tester
+    driver: custom_devices.modbus_sample:SerialPoller
+    settings: 
+        sample_rate_sec: 15
+        timeout: 2
+        baudrate: 19200
+        trace: true
+
+presentations: 
+  - name: console0
+    driver: presentations.console.console:Console
